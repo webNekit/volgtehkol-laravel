@@ -10,7 +10,7 @@
                     <h1 class="article-section__title text-xl">{{ $article->title }}</h1>
                 </div>
                 <div class="article-section__body">
-                    <img loading="lazy" src="{{ Storage::url($article->image)  }}" alt="" class="article-section__img">
+                    <img loading="lazy" src="{{ Storage::url($article->image)  }}" alt="" class="article-section__img" style="object-fit: cover;">
                     <div class="article-section__content">
                         {!! $article->content !!}
                     </div>
