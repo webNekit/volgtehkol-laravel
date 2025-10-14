@@ -10,7 +10,7 @@ use Filament\Forms;
 
 class StudentsModulePageForm
 {
-    public static string $modulePrefix = 'additional_education'; // префикс модуля
+    public static string $modulePrefix = 'students'; // префикс модуля
 
     public static function configure(Schema $schema): Schema
     {
