@@ -22,7 +22,13 @@
                 <ul class="event-card__info-list">
                     <li class="event-card__info-item">
                         <span class="event-card__info-key">Направление:</span>
-                        <span class="event-card__info-value">{{ implode(', ', (array) json_decode($event->direction, true)) }}</span>
+                        @php
+                            $directions = is_array($event->direction)
+                                ? $event->direction
+                                : json_decode($event->direction, true);
+                        @endphp
+
+                        <span class="event-card__info-value">{{ implode(', ', (array) $directions) }}</span>
                     </li>
                     <li class="event-card__info-item">
                         <span class="event-card__info-key">Формат:</span>
