@@ -21,4 +21,5 @@
 /vendor
 Homestead.json
 Homestead.yaml
+public_html
 Thumbs.db
