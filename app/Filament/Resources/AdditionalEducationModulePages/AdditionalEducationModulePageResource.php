@@ -24,6 +24,8 @@ class AdditionalEducationModulePageResource extends Resource
     protected static ?string $modelLabel = 'Дополнительное образование';
     protected static ?string $pluralModelLabel = 'Дополнительное образование';
 
+    public static string $modulePrefix = 'additional_education';
+
     protected static ?string $recordTitleAttribute = 'title';
 
     public static function form(Schema $schema): Schema
@@ -50,5 +52,11 @@ class AdditionalEducationModulePageResource extends Resource
             'create' => CreateAdditionalEducationModulePage::route('/create'),
             'edit' => EditAdditionalEducationModulePage::route('/{record}/edit'),
         ];
+    }
+
+    public static function getEloquentQuery(): \Illuminate\Database\Eloquent\Builder
+    {
+        return parent::getEloquentQuery()
+            ->where('module', static::$modulePrefix);
     }
 }

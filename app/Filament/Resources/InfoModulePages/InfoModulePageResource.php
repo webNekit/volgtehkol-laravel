@@ -23,6 +23,8 @@ class InfoModulePageResource extends Resource
     protected static ?string $modelLabel = 'Сведения об образовательной организации';
     protected static ?string $pluralModelLabel = 'Сведения об образовательной организации';
 
+    public static string $modulePrefix = 'info';
+
     protected static ?string $recordTitleAttribute = 'title';
 
     public static function form(Schema $schema): Schema
@@ -49,5 +51,11 @@ class InfoModulePageResource extends Resource
             'create' => CreateInfoModulePage::route('/create'),
             'edit' => EditInfoModulePage::route('/{record}/edit'),
         ];
+    }
+
+    public static function getEloquentQuery(): \Illuminate\Database\Eloquent\Builder
+    {
+        return parent::getEloquentQuery()
+            ->where('module', static::$modulePrefix);
     }
 }

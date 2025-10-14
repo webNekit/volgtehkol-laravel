@@ -102,7 +102,17 @@ class InfoModulePageForm
                                 ->label('Страница')
                                 ->options($pageOptions)
                                 ->required()
-                                ->helperText('Выберите страницу, для которой создаётся контент'),
+                                ->helperText('Выберите страницу, для которой создаётся контент')
+                                ->unique(
+                                    table: 'module_pages',
+                                    column: 'page_key',
+                                    ignoreRecord: true, // разрешает редактировать существующую запись
+                                    modifyRuleUsing: fn ($rule) =>
+                                    $rule->where('module', self::$modulePrefix)
+                                )
+                                ->validationMessages([
+                                    'unique' => 'Страница для данного модуля уже существует.',
+                                ]),
                         ])->columnSpanFull(),
                     ])->columnSpan(2),
                 ])->columns(6)->columnSpanFull(),

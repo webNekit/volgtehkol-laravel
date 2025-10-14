@@ -24,6 +24,8 @@ class CollegeModulePageResource extends Resource
     protected static ?string $modelLabel = 'О колледже';
     protected static ?string $pluralModelLabel = 'О колледже';
 
+    public static string $modulePrefix = 'college';
+
     protected static ?string $recordTitleAttribute = 'title';
 
     public static function form(Schema $schema): Schema
@@ -50,5 +52,11 @@ class CollegeModulePageResource extends Resource
             'create' => CreateCollegeModulePage::route('/create'),
             'edit' => EditCollegeModulePage::route('/{record}/edit'),
         ];
+    }
+
+    public static function getEloquentQuery(): \Illuminate\Database\Eloquent\Builder
+    {
+        return parent::getEloquentQuery()
+            ->where('module', static::$modulePrefix);
     }
 }

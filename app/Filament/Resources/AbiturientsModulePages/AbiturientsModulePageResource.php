@@ -24,6 +24,8 @@ class AbiturientsModulePageResource extends Resource
     protected static ?string $modelLabel = 'Абитуриентам';
     protected static ?string $pluralModelLabel = 'Абитуриентам';
 
+    public static string $modulePrefix = 'abiturients';
+
     protected static ?string $recordTitleAttribute = 'title';
 
     public static function form(Schema $schema): Schema
@@ -50,5 +52,11 @@ class AbiturientsModulePageResource extends Resource
             'create' => CreateAbiturientsModulePage::route('/create'),
             'edit' => EditAbiturientsModulePage::route('/{record}/edit'),
         ];
+    }
+
+    public static function getEloquentQuery(): \Illuminate\Database\Eloquent\Builder
+    {
+        return parent::getEloquentQuery()
+            ->where('module', static::$modulePrefix);
     }
 }

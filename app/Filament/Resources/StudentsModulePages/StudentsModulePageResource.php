@@ -20,9 +20,12 @@ class StudentsModulePageResource extends Resource
 {
     protected static ?string $model = ModulePage::class;
 
+
     protected static \UnitEnum|string|null $navigationGroup = NavigationGroup::MainModules->value;
     protected static ?string $modelLabel = 'Студентам';
     protected static ?string $pluralModelLabel = 'Студентам';
+
+    public static string $modulePrefix = 'students';
 
     protected static ?string $recordTitleAttribute = 'title';
 
@@ -50,5 +53,11 @@ class StudentsModulePageResource extends Resource
             'create' => CreateStudentsModulePage::route('/create'),
             'edit' => EditStudentsModulePage::route('/{record}/edit'),
         ];
+    }
+
+    public static function getEloquentQuery(): \Illuminate\Database\Eloquent\Builder
+    {
+        return parent::getEloquentQuery()
+            ->where('module', static::$modulePrefix);
     }
 }
