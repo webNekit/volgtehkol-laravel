@@ -1,0 +1,26 @@
+.section:is(.section--contacts) {
+  .contacts-collection {
+    width: 100%;
+    display: grid;
+    row-gap: fluid(28,22);
+    &__group {
+      &-body {
+        display: grid;
+        row-gap: rem(16);
+      }
+      &-title {
+        color: hsl(var(--muted-foreground));
+      }
+      &-list {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        display: grid;
+        row-gap: rem(8);
+      }
+      &-link {
+        font-size: fluid(16,14);
+      }
+    }
+  }
+}

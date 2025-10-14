@@ -1,0 +1,55 @@
+.banner-slide {
+  position: relative;
+  color: hsl(var(--primary-foreground));
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 30;
+    background: #ffffff;
+    background: linear-gradient(180deg,rgba(255, 255, 255, 0) 30%, rgba(0, 0, 0, .8) 90%);
+  }
+  &__content {
+    position: absolute;
+    z-index: 40;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  &__container {
+    margin-block-start: auto;
+  }
+  &__alt {
+    padding-block: fluid(42,24);
+    display: grid;
+    grid-gap: var(--gap);
+    grid-template-columns: 1fr 1fr;
+    @include mobile {
+      grid-template-columns: 1fr;
+    }
+  }
+  &__col {
+    &--right {
+      & > *:not(:last-child) {
+        margin-block-end: rem(24);
+      }
+    }
+  }
+  &__more {
+    display: inline-block;
+    @include mobile {
+      width: 100%;
+      text-align: center;
+    }
+  }
+  &__description {
+    line-height: 1.5;
+  }
+  &__picture {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}

@@ -1,0 +1,32 @@
+button {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+.button {
+  --duration: .2s;
+  border: none;
+  cursor: pointer;
+  padding: rem(16) rem(24);
+  color: inherit;
+  font-weight: 500;
+  background-color: transparent;
+  border-radius: var(--radius);
+  transition: color var(--duration), background-color var(--duration);
+  &:is(&--primary) {
+    color: hsl(var(--primary-foreground));
+    background-color: hsl(var(--primary));
+  }
+  &:is(&--outline) {
+    color: hsl(var(--primary-foreground));
+    border: rem(1) solid hsl(var(--primary-foreground));
+    &:is(:hover,:active) {
+      color: hsl(var(--foreground));
+      background-color: hsl(var(--primary-foreground));
+    }
+  }
+  &:is(&--secondary) {
+    color: hsl(var(--secondary-foreground));
+    background-color: hsl(var(--secondary));
+  }
+}

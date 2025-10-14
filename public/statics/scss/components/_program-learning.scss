@@ -1,0 +1,64 @@
+.program-learning {
+  --offset: #{fluid(24,16)};
+  padding: var(--offset);
+  color: hsl(var(--foreground));
+  background-color: hsl(var(--background));
+  border-radius: var(--radius);
+  &__wrapper {}
+
+  &__head {
+    padding-block-end: var(--offset);
+    border-block-end: rem(1) solid hsl(var(--border));
+  }
+
+  &__body {
+    padding-block-start: var(--offset);
+  }
+
+  &__list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    @include mobile {
+      row-gap: rem(14);
+      flex-direction: column;
+    }
+  }
+  &__item {
+    --inner-offset: #{fluid(24,16)};
+    display: grid;
+    row-gap: rem(8);
+    &:first-child {
+      padding-inline-end: var(--inner-offset);
+      @include mobile {
+        padding-inline-end: 0;
+      }
+    }
+    &:last-child {
+      padding-inline-start: var(--inner-offset);
+      border-inline-start: rem(1) solid hsl(var(--border));
+      @include mobile {
+        padding-inline-start: 0;
+        border-inline-start: unset;
+      }
+    }
+    &:not(:first-child, :last-child) {
+      padding-inline: var(--inner-offset);
+      border-inline-start: rem(1) solid hsl(var(--border));
+      @include mobile {
+        padding-inline: 0;
+        border-inline-start: unset;
+      }
+    }
+  }
+
+  &__key {
+    font-size: rem(16);
+    color: hsl(var(--muted-foreground));
+  }
+  &__value {
+    font-size: rem(22);
+    font-weight: var(--font-medium);
+  }
+}

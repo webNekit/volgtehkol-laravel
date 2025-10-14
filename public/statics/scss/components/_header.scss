@@ -1,0 +1,56 @@
+.header {
+  max-width: 100%;
+  width: 100%;
+  background-color: hsl(var(--card));
+  &__row {
+    width: 100%;
+    &:is(&--top) {
+      padding-block: rem(14);
+      border-bottom: rem(1) solid hsl(var(--border));
+      .header__container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+    }
+    &:is(&--middle) {
+      padding-block: rem(18);
+      @include mobile {
+        display: none;
+      }
+      .header__container {
+        display: flex;
+        align-items: center;
+        column-gap: rem(24);
+      }
+    }
+    &:is(&--bottom) {
+      padding-block: rem(14);
+      background-color: hsl(var(--secondary));
+      @include mobile {
+        display: none;
+      }
+      .header__container {}
+    }
+  }
+  &__column {
+    &:is(&--left) {
+      display: flex;
+      align-items: center;
+    }
+    &:is(&--right) {
+      margin-block: -#{rem(14)};
+      align-self: stretch;
+    }
+  }
+  &__year {
+    padding-inline-end: rem(20);
+    font-size: rem(14);
+    font-weight: var(--font-medium);
+    color: hsl(var(--muted-foreground));
+    border-right: rem(1) solid hsl(var(--border));
+  }
+  &__navigation {
+    max-width: rem(860);
+  }
+}

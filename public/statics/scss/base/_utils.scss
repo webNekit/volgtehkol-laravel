@@ -1,0 +1,116 @@
+.container {
+  margin-inline: auto;
+  padding-inline: var(--conainer-offset);
+  max-width: var(--container-width);
+}
+
+.no-scroll {
+  overflow: hidden;
+}
+
+.space-y {
+  --gap: var(--gap);
+  display: grid;
+  row-gap: var(--gap);
+  &-4 {
+    --gap: #{rem(16)};
+    display: grid;
+    row-gap: var(--gap);
+  }
+  &-5 {
+    --gap: #{rem(20)};
+    display: grid;
+    row-gap: var(--gap);
+  }
+  &-6 {
+    --gap: #{rem(24)};
+    display: grid;
+    row-gap: var(--gap);
+  }
+  &-7 {
+    --gap: #{rem(28)};
+    display: grid;
+    row-gap: var(--gap);
+  }
+  &-8 {
+    --gap: #{rem(32)};
+    display: grid;
+    row-gap: var(--gap);
+  }
+}
+
+.tooltip {
+  position: relative;
+  &--top {
+    &::before {
+      left: 50%;
+      bottom: 100%;
+    }
+    &:is(:hover, :active) {
+      &::before {
+        opacity: 1;
+        bottom: calc(100% + #{rem(4)});
+      }
+    }
+  }
+  &--right {
+    &::before {
+      top: 50%;
+      right: 0;
+      transform: translateY(-50%);
+    }
+    &:is(:hover, :active) {
+      &::before {
+        opacity: 1;
+        right: -#{rem(4)};
+      }
+    }
+  }
+  &--bottom {
+    &::before {
+      left: 50%;
+      top: 100%;
+    }
+    &:is(:hover, :active) {
+      &::before {
+        opacity: 1;
+        top: calc(100% + #{rem(4)});
+      }
+    }
+  }
+  &::before {
+    --duration: .2s;
+    content: attr(data-tooltip);
+    position: absolute;
+    display: inline-block;
+    padding: rem(4) rem(8);
+    font-size: rem(12);
+    white-space: nowrap;
+    color: hsl(var(--popover));
+    text-transform: lowercase;
+    background-color: hsl(var(--popover-foreground));
+    border-radius: var(--radius);
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: all var(--duration) ease-in-out;
+  }
+}
+
+.application__overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  opacity: 0;
+  visibility: hidden;
+  z-index: 998;
+  -webkit-backdrop-filter: blur(#{rem(10)});
+  -moz-backdrop-filter: blur(#{rem(10)});
+  -o-backdrop-filter: blur(#{rem(10)});
+  backdrop-filter: blur(#{rem(10)});
+  transition: opacity 0.3s ease;
+
+  &.active {
+    opacity: 1;
+    visibility: visible;
+  }
+}

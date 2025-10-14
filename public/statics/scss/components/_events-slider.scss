@@ -1,0 +1,93 @@
+.events-slider {
+  max-width: 100%;
+  width: 100%;
+  height: 100%;
+  &__wrapper {
+    max-width: 100%;
+    width: 100%;
+    height: 100%;
+    display: flex;
+  }
+  &__slide {
+    max-width: 100%;
+    width: 100%;
+    height: 100%;
+  }
+  &__controls {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    z-index: 10;
+    padding: fluid(24,16);
+    display: flex;
+    align-items: center;
+    column-gap: fluid(16, 14);
+  }
+  &__control {
+    --size: #{fluid(52,42)};
+    width: var(--size);
+    height: var(--size);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: hsl(var(--primary-foreground));
+    border-radius: 50%;
+    border: rem(1) solid hsl(var(--primary-foreground));
+    cursor: pointer;
+    &.swiper-button-disabled {
+      cursor: default;
+      color: hsl(var(--muted-foreground));
+      border: rem(1) solid hsl(var(--muted-foreground));
+    }
+  }
+  &__card {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    color: hsl(var(--primary-foreground));
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+  &__body {
+    position: absolute;
+    inset: 0;
+    padding: rem(24);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: start;
+    flex-direction: column;
+  }
+  &__category {
+    --duration: .2s;
+    padding: fluid(8,4) fluid(12,8);
+    display: inline-block;
+    font-size: rem(14);
+    border: rem(1) solid hsl(var(--border));
+    border-radius: var(--radius);
+    background-color: rgba(0,0,0, .4);
+    transition: background-color var(--duration), color var(--duration);
+    &:is(:hover, :active) {
+      color: hsl(var(--muted-foreground));
+      background-color: hsl(var(--accent));
+    }
+  }
+  &__content {
+    padding-block: fluid(42,24);
+    padding-inline: fluid(24,16);
+    margin-block-start: auto;
+    margin-inline: -#{rem(24)};
+    margin-block-end: -#{rem(24)};
+    display: grid;
+    row-gap: fluid(52,36);
+    background-color: rgba(0,0,0, .4);
+    -webkit-backdrop-filter: blur(#{rem(6)});
+    -moz-backdrop-filter: blur(#{rem(6)});
+    backdrop-filter: blur(#{rem(6)});
+  }
+  &__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}

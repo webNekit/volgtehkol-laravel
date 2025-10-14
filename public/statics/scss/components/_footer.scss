@@ -1,0 +1,33 @@
+.footer {
+  padding-block: fluid(52,34);
+  border-top: rem(1) solid hsl(var(--border));
+  &__container {
+    display: grid;
+    grid-gap: fluid(32,16);
+    grid-template-columns: repeat(4, 1fr);
+  }
+  &__information {
+    grid-column: 1 span;
+    @include mobile {
+      grid-column: 4 span;
+    }
+    &-inner {
+      display: flex;
+      flex-direction: column;
+      row-gap: rem(32);
+    }
+  }
+  &__cols {
+    grid-column: 3 span;
+    display: grid;
+    grid-gap: fluid(24,16);
+    grid-template-columns: repeat(3,1fr);
+    @include mobile {
+      grid-column: 4 span;
+      grid-template-columns: 1fr 1fr;
+    }
+    @include mobile-s {
+      grid-template-columns: 1fr;
+    }
+  }
+}

@@ -1,0 +1,38 @@
+.employees-collection:is(.section__body) {
+  .employees-collection {
+    width: 100%;
+    &__list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+    }
+    &__item {
+      width: 100%;
+      &:first-child {
+        .employees-collection {
+          &__card {
+            padding-block-end: rem(24);
+            border-block-end: rem(1) solid hsl(var(--border));
+          }
+        }
+      }
+      &:last-child {
+        .employees-collection {
+          &__card {
+            padding-block-end: 0 !important;
+            border-block-end: none !important;
+          }
+        }
+      }
+      &:not(:first-child) {
+        .employees-collection {
+          &__card {
+            padding-block: rem(24);
+            border-block-end: rem(1) solid hsl(var(--border));
+          }
+        }
+      }
+    }
+  }
+}

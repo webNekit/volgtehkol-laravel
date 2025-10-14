@@ -1,0 +1,62 @@
+.specialization-card {
+  --duration: .2s;
+  width: 100%;
+  height: 100%;
+  color: hsl(var(--muted-foreground));
+  background-color: hsl(var(--muted));
+  border-radius: var(--radius);
+  transition: all var(--duration) ease-in-out;
+  &:is(:hover, :active) {
+    color: hsl(var(--primary-foreground));
+    background-color: hsl(var(--primary));
+    .specialization-card {
+      &__title {
+        color: inherit;
+      }
+      &__info {
+        &-value {
+          color: inherit;
+        }
+      }
+    }
+  }
+  &__link {
+    width: 100%;
+    height: 100%;
+  }
+  &__body {
+    padding: fluid(34,24);
+    width: 100%;
+    height: 100%;
+    display: grid;
+    row-gap: fluid(24,18);
+  }
+  &__head {
+    display: grid;
+    row-gap: rem(8);
+  }
+  &__title {
+    color: hsl(var(--foreground));
+  }
+  &__info {
+    &-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      grid-gap: fluid(18,14);
+      grid-template-columns: 1fr 1fr;
+    }
+    &-item {
+      display: grid;
+      row-gap: rem(8);
+    }
+    &-key {
+      font-size: rem(14);
+    }
+    &-value {
+      font-size: rem(16);
+      color: hsl(var(--foreground));
+    }
+  }
+}

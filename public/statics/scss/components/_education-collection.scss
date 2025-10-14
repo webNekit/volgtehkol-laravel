@@ -1,0 +1,37 @@
+.section:is(.section--education) {
+  .education-collection {
+    width: 100%;
+    &__list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      width: 100%;
+    }
+    &__item {
+      width: 100%;
+      &:not(:first-child) {
+        .education-collection {
+          &__body {
+            border-block-start: none;
+            border-block-end: rem(1) solid hsl(var(--border));
+          }
+        }
+      }
+    }
+    &__link {
+      width: 100%;
+      transition: color .2s ease-in-out;
+      &:is(:hover, :active) {
+        color: hsl(var(--primary));
+      }
+    }
+    &__body {
+      padding-block: fluid(24,16);
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-block: rem(1) solid hsl(var(--border));
+    }
+  }
+}

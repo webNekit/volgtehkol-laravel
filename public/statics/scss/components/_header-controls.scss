@@ -1,0 +1,48 @@
+.header-controls:is(.header__controls) {
+  height: 100%;
+  .header-controls {
+    &__list {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      list-style: none;
+      display: flex;
+      align-items: center;
+    }
+    &__item {
+      height: 100%;
+      &:not(:first-child) {
+        .header-controls__target {
+          border-right: rem(1) solid hsl(var(--border));
+        }
+      }
+      &:first-child {
+        .header-controls__target {
+          border-inline: rem(1) solid hsl(var(--border));
+        }
+      }
+    }
+    &__target {
+      --duration: .2s;
+      padding: unset;
+      width: rem(44.09);
+      height: 100%;
+      font-size: fluid(16,14);
+      background-color: transparent;
+      border-radius: unset;
+      border: none;
+      cursor: pointer;
+      transition: background-color var(--duration), color var(--duration);
+      &--mobile {
+        display: none;
+        @include mobile {
+          display: block;
+        }
+      }
+      &:hover {
+        color: hsl(var(--accent-foreground));
+        background-color: hsl(var(--accent));
+      }
+    }
+  }
+}

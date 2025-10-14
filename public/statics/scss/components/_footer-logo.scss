@@ -1,0 +1,30 @@
+.footer-logo {
+  &__link {
+    display: grid;
+    row-gap: rem(16);
+  }
+  &__brand {
+    position: relative;
+    padding-inline-start: rem(14);
+    font-size: rem(24);
+    font-weight: var(--font-bold);
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      width: rem(2);
+      height: 100%;
+      background-color: hsl(var(--primary));
+    }
+  }
+  &__address {
+    font-size: fluid(16,14);
+    color: hsl(var(--muted-foreground));
+    p {
+      margin: 0;
+      padding: 0;
+    }
+  }
+}

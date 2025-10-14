@@ -1,0 +1,39 @@
+.information-collection {
+  width: 100%;
+  &__items {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: grid;
+  }
+  &__item {
+    --spacing: #{fluid(24,16)};
+    display: grid;
+    align-items: center;
+    gap: fluid(18,14);
+    grid-template-columns: 1fr 1fr;
+    @include mobile-s {
+      grid-template-columns: 1fr;
+    }
+    &:not(:first-child) {
+      padding-block: var(--spacing);
+    }
+    &:not(:last-child) {
+      border-block-end: rem(1) solid hsl(var(--border));
+    }
+    &:first-child {
+      padding-block-end: var(--spacing);
+    }
+  }
+  &__key {
+    text-align: left;
+  }
+  &__value {
+    font-size: fluid(16,14);
+    color: hsl(var(--muted-foreground));
+    p {
+      margin: 0;
+      padding: 0;
+    }
+  }
+}

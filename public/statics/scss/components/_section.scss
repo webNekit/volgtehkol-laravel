@@ -1,0 +1,45 @@
+.section {
+  &:first-child {
+    padding-block-start: fluid(84, 24);
+  }
+  &:last-child {
+    padding-block-end: fluid(84, 24);
+  }
+  padding-block: fluid(42, 24);
+  &__container {
+    width: 100%;
+    display: grid;
+    row-gap: fluid(32, 24);
+  }
+  &__header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    @include mobile {
+      row-gap: rem(16);
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: unset;
+    }
+  }
+  &__title {
+    @include mobile {
+      order: 2;
+    }
+  }
+  &__link {
+    --duration: .2s;
+    color: hsl(var(--primary));
+    display: flex;
+    align-items: center;
+    column-gap: rem(3.5);
+    transition: color var(--duration);
+    white-space: nowrap;
+    &:is(:hover, :active) {
+      color: hsl(var(--accent-foreground));
+    }
+    @include mobile {
+      order: 1;
+    }
+  }
+}

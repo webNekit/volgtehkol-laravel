@@ -1,0 +1,36 @@
+.article-section {
+  padding-block: fluid(84, 24);
+  &__container {
+    max-width: rem(1040);
+    display: grid;
+    row-gap: fluid(32,18);
+  }
+  &__header {
+    display: grid;
+    row-gap: fluid(24,16);
+  }
+  &__information {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: fluid(24,16);
+    &-category {
+      color: hsl(var(--primary));
+    }
+    &-date {}
+  }
+  &__body {
+    display: grid;
+    row-gap: fluid(24,16);
+  }
+  &__img {
+    width: 100%;
+    height: 100%;
+    max-height: fluid(640, 320);
+    border-radius: var(--radius);
+  }
+  &__content {
+    line-height: 1.5;
+    font-size: fluid(20,16);
+  }
+}

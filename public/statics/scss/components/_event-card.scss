@@ -1,0 +1,69 @@
+.event-card {
+  padding: fluid(24,16);
+  width: 100%;
+  height: 100%;
+  background-color: hsl(var(--card));
+  border: rem(1) solid hsl(var(--border));
+  border-radius: var(--radius);
+
+  &__wrapper {
+    display: grid;
+    row-gap: fluid(24,16);
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    column-gap: fluid(16, 8);
+    i {
+      color: hsl(var(--muted-foreground));
+      font-size: fluid(22,16);
+    }
+  }
+
+  &__date {
+    font-weight: var(--font-medium);
+    color: hsl(var(--muted-foreground));
+  }
+
+  &__body {
+    display: grid;
+    row-gap: fluid(24,16);
+  }
+
+  &__content {
+    display: grid;
+    row-gap: fluid(16,12);
+  }
+
+  &__title {
+    margin: 0;
+    padding: 0;
+  }
+  &__text {
+    color: hsl(var(--muted-foreground));
+    p {
+      margin: 0;
+      padding: 0;
+    }
+  }
+
+  &__info {
+    &-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: inline-table;
+    }
+    &-item {
+      &:not(:last-child) {
+        margin-block-end: fluid(6);
+      }
+    }
+    &-key {
+      color: hsl(var(--muted-foreground))
+    }
+    &-value {}
+  }
+}

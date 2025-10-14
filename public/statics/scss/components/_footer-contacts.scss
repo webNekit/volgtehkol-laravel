@@ -1,0 +1,35 @@
+.footer-contacts {
+  padding-block-start: rem(32);
+  display: grid;
+  row-gap: rem(28);
+  border-top: rem(1) solid hsl(var(--border));
+  &__head {
+    font-size: rem(16);
+  }
+  &__list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    gap: var(--gap);
+    @include mobile-s {
+      flex-direction: column;
+      gap: rem(14);
+    }
+  }
+  &__item {
+    display: flex;
+    flex-direction: column;
+    row-gap: rem(12);
+    &-label {
+      font-size: rem(14);
+      color: hsl(var(--muted-foreground));
+    }
+    &-phone {
+      font-size: rem(18);
+    }
+    &-email {
+      font-size: rem(16);
+    }
+  }
+}

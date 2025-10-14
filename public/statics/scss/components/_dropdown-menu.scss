@@ -1,0 +1,207 @@
+.dropdown-menu {
+  --dropdown-menu-bg: hsl(var(--background));
+  --dropdown-menu-border: hsl(var(--border));
+  --dropdown-menu-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+  --dropdown-menu-radius: 8px;
+  --dropdown-menu-padding: 12px 0;
+  --dropdown-menu-item-padding: 8px 16px;
+  --dropdown-menu-transition: all 0.2s ease-in-out;
+  --dropdown-menu-z-index: 1000;
+  --dropdown-menu-offset: 12px;
+  --dropdown-menu-gap-filler: 10px; // Высота заполнителя
+
+  position: relative;
+
+  &__trigger {
+    display: flex;
+    align-items: center;
+    gap: rem(8);
+    background: none;
+    border: none;
+    cursor: pointer;
+    font: inherit;
+    color: inherit;
+    padding: 0;
+    transition: color 0.2s linear;
+
+    &:hover {
+      color: hsl(var(--muted-foreground));
+    }
+
+    &[aria-expanded="true"] {
+      .dropdown-menu__icon {
+        transform: rotate(180deg);
+      }
+
+      + .dropdown-menu__content {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+        pointer-events: all;
+      }
+    }
+
+    &:focus-visible {
+      outline: 2px solid hsl(var(--ring));
+      outline-offset: 2px;
+      border-radius: 4px;
+    }
+  }
+
+  &__icon {
+    transition: transform 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__content {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    margin-top: var(--dropdown-menu-offset);
+    background: var(--dropdown-menu-bg);
+    border: 1px solid var(--dropdown-menu-border);
+    border-radius: var(--dropdown-menu-radius);
+    box-shadow: var(--dropdown-menu-shadow);
+    padding: var(--dropdown-menu-padding);
+    min-width: rem(280);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: var(--dropdown-menu-transition);
+    pointer-events: none;
+    z-index: var(--dropdown-menu-z-index);
+
+    // Заполняющий псевдоэлемент для gap
+    &::before {
+      content: '';
+      position: absolute;
+      bottom: 100%;
+      left: 0;
+      display: block;
+      width: 100%;
+      height: 22.222%;
+      background: transparent;
+    }
+
+    // Стрелка
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 100%;
+      left: 16px;
+      border: 6px solid transparent;
+      border-bottom-color: var(--dropdown-menu-border);
+    }
+  }
+
+  &__list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  &__item {
+    margin: 0;
+  }
+
+  &__link {
+    display: block;
+    padding: var(--dropdown-menu-item-padding);
+    color: inherit;
+    font-size: rem(16);
+    text-decoration: none;
+    transition: var(--dropdown-menu-transition);
+
+    &:hover {
+      background-color: hsl(var(--accent));
+      color: hsl(var(--accent-foreground));
+    }
+
+    &:focus-visible {
+      outline: 2px solid hsl(var(--ring));
+      outline-offset: -2px;
+    }
+  }
+
+  // Модификатор для правого выравнивания
+  &--right {
+    .dropdown-menu__content {
+      left: auto;
+      right: 0;
+
+      &::after {
+        left: auto;
+        right: 16px;
+      }
+    }
+  }
+
+  // Ховер эффекты с заполнителем
+  @media (hover: hover) {
+    &:hover {
+      .dropdown-menu__trigger {
+        color: hsl(var(--muted-foreground));
+      }
+
+      .dropdown-menu__content {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+        pointer-events: all;
+      }
+
+      .dropdown-menu__icon {
+        transform: rotate(180deg);
+      }
+    }
+
+    // Позволяем контенту оставаться открытым при ховере на него
+    .dropdown-menu__content:hover {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+  }
+}
+
+// Адаптивность
+@include tablet {
+  .dropdown-menu {
+    &__content {
+      position: fixed;
+      top: auto;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      margin-top: 0;
+      border-radius: 8px 8px 0 0;
+      transform: translateY(100%);
+      min-width: auto;
+
+      &::before,
+      &::after {
+        display: none;
+      }
+
+      &[aria-hidden="false"] {
+        transform: translateY(0);
+      }
+    }
+  }
+}
+
+// JavaScript класс
+.dropdown-menu--open {
+  .dropdown-menu__content {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    pointer-events: all;
+  }
+
+  .dropdown-menu__icon {
+    transform: rotate(180deg);
+  }
+}

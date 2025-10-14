@@ -1,0 +1,38 @@
+html {
+  color: hsl(var(--foreground));
+  background-color: hsl(var(--background));
+  overflow-x: hidden;
+}
+
+body{
+  line-height: 1.15;
+  font-size: fluid(18, 14);
+  color: hsl(var(--foreground));
+  font-family: var(--font-primary);
+  font-weight: var(--font-regular);
+  background-color: hsl(var(--background));
+  overflow-x: hidden;
+}
+
+.main {
+  &:has(aside) {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    column-gap: var(--gap);
+    .main {
+      &__content {
+        padding-block: rem(24);
+        order: 1;
+        width: 100%;
+        grid-column: 2 span;
+        @include mobile {
+          grid-column: 3 span;
+        }
+        section:first-child {
+          padding-block: rem(24);
+        }
+      }
+    }
+  }
+}

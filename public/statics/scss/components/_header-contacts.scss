@@ -1,0 +1,30 @@
+.header-contacts:is(.header__contacts) {
+  padding-inline-start: rem(20);
+  @include mobile {
+    display: none;
+  }
+  .header-contacts {
+    &__list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: rem(24);
+    }
+    &__item {}
+    &__link {
+      font-size: fluid(16,14);
+      color: hsl(var(--foreground));
+      font-weight: var(--font-medium);
+      display: flex;
+      align-items: center;
+      column-gap: rem(5);
+      text-decoration: none;
+      i {
+        font-size: rem(16);
+        color: hsl(var(--primary));
+      }
+    }
+  }
+}

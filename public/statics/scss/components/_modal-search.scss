@@ -1,0 +1,61 @@
+.modal-search {
+  position: fixed;
+  top: -100%;
+  left: 0;
+  right: 0;
+  padding-block: fluid(52, 24);
+  width: 100%;
+  background-color: hsl(var(--card));
+  border-bottom: rem(1) solid hsl(var(--border));
+  z-index: 999;
+  opacity: 0;
+  visibility: hidden;
+  transition: top 0.3s ease, opacity 0.3s ease, visibility 0s linear 0.3s;
+
+  &.active {
+    top: 0;
+    opacity: 1;
+    visibility: visible;
+    transition: top 0.3s ease, opacity 0.3s ease;
+  }
+  @include tablet {
+    padding-block-start: calc(#{fluid(52,32)} + #{rem(16)});
+  }
+  &__close {
+    --size: #{fluid(52,32)};
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: unset;
+    width: var(--size);
+    height: var(--size);
+    font-size: fluid(22,16);
+    color: hsl(var(--primary-foreground));
+    background-color: hsl(var(--primary));
+    border-bottom-right-radius: unset;
+    border-top-right-radius: unset;
+    border-top-left-radius: unset;
+    &:is(:hover, :active) {
+      color: hsl(var(--accent-foreground));
+      background-color: hsl(var(--accent));
+    }
+  }
+  &__form {
+    display: flex;
+    align-items: center;
+    column-gap: fluid(12, 4);
+  }
+  &__input {
+    outline: none;
+    padding-inline: fluid(14, 8);
+    flex: 1;
+    align-self: stretch;
+    background-color: hsl(var(--input));
+    border-radius: var(--radius);
+    border: rem(1) solid hsl(var(--border));
+  }
+  &__button {
+    flex-basis: 0;
+    white-space: nowrap;
+  }
+}
