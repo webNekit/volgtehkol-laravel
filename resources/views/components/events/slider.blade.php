@@ -2,7 +2,7 @@
     <div class="events-slider__card">
         <div class="events-slider__body">
             <div class="events-slider__content">
-                <a href="#!">
+                <a href="{{ route('events::show', $event->id) }}">
                     <h3 class="events-slider__title text-lg">{{ $event->title }}</h3>
                 </a>
                 <div class="events-slider__date">
