@@ -275,7 +275,7 @@ td p:has(>&nbsp;) {
     }
 }
 
-.page-image img {
+.page-content img {
     width: 100%;
     height: auto;
     object-fit: cover;
