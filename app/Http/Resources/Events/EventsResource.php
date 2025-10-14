@@ -17,7 +17,7 @@ class EventsResource {
 
     public static function eventsSliderCollection()
     {
-        return Event::query()->where('is_active', true)->where('is_slider', true)->where('is_banner', false)
+        return Event::query()->where('is_active', true)->where('is_slider', true)
             ->whereDate('end_date', '>=', now())
             ->orderBy('start_date')
             ->with('format')
@@ -26,7 +26,7 @@ class EventsResource {
 
     public static function eventsBannerCollection()
     {
-        return Event::query()->where('is_active', true)->where('is_slider', false)->where('is_banner', true)
+        return Event::query()->where('is_active', true)->where('is_banner', true)
 //            ->whereDate('end_date', '>=', now())
             ->orderBy('start_date')
             ->with('format')
