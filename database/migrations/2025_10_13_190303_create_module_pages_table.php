@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('module');
             $table->string('page_key');
             $table->string('title');
-            $table->json('content')->nullable();
+            $table->longText('content')->nullable();
             $table->json('images')->nullable();
             $table->json('files')->nullable();
             $table->json('links')->nullable();
