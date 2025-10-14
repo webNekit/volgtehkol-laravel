@@ -12,7 +12,7 @@ class StudentsController extends Controller
     {
         $page = ModulePage::where('module', 'students')
             ->where('page_key', $pageKey)
-            ->first(); // убрали firstOrFail()
+            ->first();
 
         // Если страница не найдена, создаем заглушку
         if (!$page) {
