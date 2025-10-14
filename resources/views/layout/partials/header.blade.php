@@ -45,9 +45,9 @@
             <livewire:ui.header />
         </div>
     </div>
-    <div class="header__row header__row--bottom">
-        <div class="header__container container">
-            <livewire:ui.submenu />
-        </div>
-    </div>
+{{--    <div class="header__row header__row--bottom">--}}
+{{--        <div class="header__container container">--}}
+{{--            <livewire:ui.submenu />--}}
+{{--        </div>--}}
+{{--    </div>--}}
 </header>
