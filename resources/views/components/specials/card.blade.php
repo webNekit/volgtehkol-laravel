@@ -1,9 +1,9 @@
 <article class="specialties-collection__slider-card specialization-card">
     <a href="{{ route('specials::show', ['id' => $special->id]) }}" class="specialization-card__link">
         <div class="specialization-card__body">
-            @if(!empty($special->image) && Storage::exists($special->image))
+            @if(!empty($special->image) && Storage::disk('public')->exists($special->image))
                 <div class="specialization-card__image">
-                    <img src="{{ Storage::url($special->image) }}" alt="{{ $special->title }}">
+                    <img src="{{ Storage::disk('public')->url($special->image) }}" alt="{{ $special->title }}">
                 </div>
             @endif
             <div class="specialization-card__head">
