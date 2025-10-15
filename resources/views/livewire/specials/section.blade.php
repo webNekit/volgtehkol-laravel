@@ -3,10 +3,11 @@
         <div class="section__container container">
             <div class="section__header">
                 <h2 class="section__title">Специальности <span style="text-transform: lowercase">{{ $category->title }}</span></h2>
-                <a href="{{ route('specials::index') }}" class="section__link">
+                <a href="{{ route('specials::index', ['category_id' => $category->id]) }}" class="section__link">
                     <span>Все специальности</span>
                     <i class="ri-arrow-right-s-line"></i>
                 </a>
+
             </div>
             <div class="section__body specialties-collection">
                 <div class="specialties-collection__slider swiper">

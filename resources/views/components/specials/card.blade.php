@@ -1,9 +1,11 @@
 <article class="specialties-collection__slider-card specialization-card">
     <a href="{{ route('specials::show', ['id' => $special->id]) }}" class="specialization-card__link">
         <div class="specialization-card__body">
-            <div class="specialization-card__image">
-                <img src="{{ Storage::url($special->image)  }}" alt="{{ $special->title }}">
-            </div>
+            @if(!empty($special->image) && Storage::exists($special->image))
+                <div class="specialization-card__image">
+                    <img src="{{ Storage::url($special->image) }}" alt="{{ $special->title }}">
+                </div>
+            @endif
             <div class="specialization-card__head">
                 <h3 class="specialization-card__title text-md">{{ $special->title }}</h3>
                 <h4 class="specialization-card__subtitle text-sm">на базе {{ $special->level }} классов</h4>
