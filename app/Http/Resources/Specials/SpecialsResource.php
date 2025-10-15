@@ -19,7 +19,7 @@ class SpecialsResource
                 ->orderBy('id', 'desc');
         }])
             ->where('is_active', true)
-            ->orderBy('title')
+            ->orderBy('id')
             ->get();
     }
 
