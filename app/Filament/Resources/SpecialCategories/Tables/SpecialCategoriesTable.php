@@ -14,6 +14,7 @@ class SpecialCategoriesTable
     {
         return $table
             ->columns([
+                TextColumn::make('id')->label('#')->searchable()->sortable(),
                 TextColumn::make('title')->label('Название')->searchable()->sortable(),
             ])
             ->filters([
