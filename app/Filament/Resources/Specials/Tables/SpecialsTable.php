@@ -16,7 +16,7 @@ class SpecialsTable
         return $table
             ->columns([
                 TextColumn::make('id')->label('#'),
-                TextColumn::make('title')->label('Название'),
+                TextColumn::make('title')->label('Название')->searchable()->sortable(),
                 IconColumn::make('is_active')->boolean()->label('Отображать на сайте'),
             ])
             ->filters([
