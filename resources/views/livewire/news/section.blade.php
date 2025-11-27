@@ -7,12 +7,27 @@
                 <i class="ri-arrow-right-s-line"></i>
             </a>
         </div>
+        @php
+            $hasSliderArticles = isset($articles_slider) && $articles_slider->isNotEmpty();
+        @endphp
         <div class="section__body news-collection">
-            <div class="news-collection__row">
-                <div class="news-collection__column news-collection__column--left">
-                    <x-article.slider :articles="$articles_slider" />
+            @if ($hasSliderArticles)
+                <div class="news-collection__row">
+                    <div class="news-collection__column news-collection__column--left">
+                        <x-article.slider :articles="$articles_slider" />
+                    </div>
+                    <div class="news-collection__column news-collection__column--right">
+                        <div class="news-collection__grid">
+                            @foreach($articles as $article)
+                                <div class="news-collection__grid-item">
+                                    <x-article.card :article="$article" />
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
                 </div>
-                <div class="news-collection__column news-collection__column--right">
+            @else
+                <div class="news-collection__row">
                     <div class="news-collection__grid">
                         @foreach($articles as $article)
                             <div class="news-collection__grid-item">
@@ -21,7 +36,7 @@
                         @endforeach
                     </div>
                 </div>
-            </div>
+            @endif
         </div>
     </div>
 </section>
