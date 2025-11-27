@@ -1,3 +1,7 @@
+@php
+    use App\Models\Section;
+    $hasSections = Section::query()->exists();
+@endphp
 <header class="application__header header" id="header">
     <div class="header__row header__row--top">
         <div class="header__container container">
@@ -45,9 +49,11 @@
             <livewire:ui.header />
         </div>
     </div>
-{{--    <div class="header__row header__row--bottom">--}}
-{{--        <div class="header__container container">--}}
-{{--            <livewire:ui.submenu />--}}
-{{--        </div>--}}
-{{--    </div>--}}
+    @if($hasSections)
+        <div class="header__row header__row--bottom">
+            <div class="header__container container">
+                <livewire:ui.submenu />
+            </div>
+        </div>
+    @endif
 </header>

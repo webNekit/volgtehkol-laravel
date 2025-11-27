@@ -37,7 +37,10 @@ class DashboardPanelProvider extends PanelProvider
             ->navigationGroups([
                 NavigationGroup::make()
                     ->label(\App\Enums\NavigationGroup::Content->value)
-                    ->icon('heroicon-o-newspaper'),
+                    ->icon('heroicon-o-folder'),
+                NavigationGroup::make()
+                    ->label(\App\Enums\NavigationGroup::OptionalPage->value)
+                    ->icon('heroicon-o-document'),
                 NavigationGroup::make()
                     ->label(\App\Enums\NavigationGroup::Event->value)
                     ->icon('heroicon-o-calendar'),

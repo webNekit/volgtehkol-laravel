@@ -1,17 +1,23 @@
 <nav class="sidebar__navigation">
     <ul class="sidebar__navigation-list">
-        @foreach($menu['items'] as $item)
+
+        @foreach($menu as $item)
             @php
-                $isActive = request()->routeIs($item['route']);
+                if(!empty($item['is_static'])) {
+                    $isActive = request()->routeIs($item['route']);
+                    $href = $item['route'] !== '#!' ? route($item['route'], $item['params'] ?? []) : '#!';
+                } else {
+                    $isActive = request()->route('slug') === $item['slug'];
+                    $href = $item['url'] ?? '#!';
+                }
             @endphp
+
             <li class="sidebar__navigation-item">
-                <a
-                    href="{{ $item['route'] !== '#!' ? route($item['route']) : '#!' }}"
-                    class="sidebar__navigation-link {{ $isActive ? 'sidebar__navigation-link--active' : '' }}"
-                >
+                <a href="{{ $href }}" class="sidebar__navigation-link {{ $isActive ? 'sidebar__navigation-link--active' : '' }}">
                     {{ $item['name'] }}
                 </a>
             </li>
         @endforeach
+
     </ul>
 </nav>

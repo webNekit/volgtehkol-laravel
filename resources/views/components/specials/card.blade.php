@@ -18,7 +18,7 @@
                             <span class="specialization-card__info-value" style="text-transform: capitalize;">{{ $special->form }}</span>
                         </li>
                         <li class="specialization-card__info-item">
-                            <span class="specialization-card__info-key">Стоимость</span>
+                            <span class="specialization-card__info-key"></span>
                             <span class="specialization-card__info-value">
                                 @if($special->cost == 0)
                                     бюджет

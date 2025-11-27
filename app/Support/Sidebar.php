@@ -3,7 +3,6 @@
 namespace App\Support;
 
 use Illuminate\Support\Facades\Route;
-use phpDocumentor\Reflection\Types\True_;
 
 class Sidebar {
     protected static array $routes = [
@@ -66,11 +65,23 @@ class Sidebar {
     ];
 
     public static function showRoutes() {
+
+        // ---------------------------------
+        // 1. Показывать sidebar на /common/*
+        // ---------------------------------
+        if (request()->is('common/*')) {
+            return true;
+        }
+
+        // ---------------------------------
+        // 2. Старая логика — по статическим роутам
+        // ---------------------------------
         foreach (self::$routes as $route) {
             if (Route::is($route)) {
                 return true;
             }
         }
+
         return false;
     }
 }

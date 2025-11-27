@@ -7,4 +7,5 @@ enum NavigationGroup: string {
     case Event = "Мероприятия";
     case MainModules = 'Основные модули';
     case EducationInfo = "Коллекции";
+    case OptionalPage = "Опциональные страницы";
 }

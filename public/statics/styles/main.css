@@ -319,6 +319,9 @@ td p:has(>&nbsp;) {
   display: block;
 }
 
+.logo__alt span:nth-child(2) { padding-inline-start: 24px; }
+.logo__alt span:nth-child(3) { padding-inline-start: 64px; }
+
 h1, h2, h3, h4, h5, h6 {
   margin: 0;
   padding: 0;

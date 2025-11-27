@@ -6,6 +6,11 @@ Route::namespace('Home')->as('home::')->group(function () {
     Route::get('/', [\App\Http\Controllers\Home\HomeController::class, 'index'])->name('index');
 });
 
+Route::prefix('common')->group(function () {
+    Route::namespace('Common')->as('common::')->group(function () {
+        Route::get('{slug}', [\App\Http\Controllers\Common\CommonController::class, 'show'])->name('show');
+    });
+});
 
 Route::prefix('info')->group(function () {
     Route::namespace('Info')->as('info::')->group(function () {
