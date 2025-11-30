@@ -835,6 +835,123 @@ button {
   transition: opacity var(--duration);
 }
 
+.welcome-section {
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    height: calc(100vh - 12.18125rem);
+    overflow: hidden;
+}
+@media screen and (max-width: 1140.98px) {
+    .welcome-section {
+        height: 100vh;
+    }
+}
+@media screen and (max-width: 768.98px) {
+    .welcome-section {
+        height: 100vh;
+    }
+}
+
+.welcome-section__video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.welcome-section .welcome-section__wrapper {
+    inset: 0;
+    position: absolute;
+    padding-block-start: calc(64px + 48px);
+    padding-block-end: 64px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: white;
+    background-color: rgba(0,0,0,.5);
+}
+
+.welcome-section__row.welcome-section__row--top {
+    padding-block-start: 48px;
+}
+
+.welcome-section .welcome-section__subtitle {
+
+}
+
+.welcome-section .welcome-section__title {
+    font-size: 64px;
+}
+
+.workshops {
+    max-width: 85%;
+    padding-block-end: 24px;
+}
+
+.workshops__slider-wrapper {
+    margin-block-end: 24px;
+}
+
+.workshops__slider-control {
+    font-size: 24px;
+    color: white;
+}
+
+.workshop-card .workshop-card__preview {
+    width: 100%;
+    height: auto;
+    flex: 1;
+}
+
+.workshop-card {
+    display: flex;
+    column-gap: 24px;
+    align-items: center;
+}
+
+.workshop-card .workshop-card__preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: var(--radius);
+}
+
+.workshop-card .workshop-card__alt {
+    flex: 3;
+}
+
+
+@media screen and (max-width: 1140.98px) {
+    .workshop-card .workshop-card__preview,
+    .workshop-card .workshop-card__alt {
+        flex: 1;
+    }
+    .workshop-card {
+        flex-direction: column;
+        row-gap: 24px;
+    }
+    .workshops {
+        max-width: 100%;
+    }
+    .welcome-section .welcome-section__wrapper {
+        padding-block: 24px;
+    }
+    .welcome-section .welcome-section__title {
+        font-size: 32px;
+    }
+}
+
+.workshop-card .workshop-card__alt .workshop-card__alt-title {
+    font-size: 24px;
+}
+.workshop-card .workshop-card__alt .workshop-card__alt-text {
+    font-size: 18px;
+    line-height: 1.25;
+    color: hsl(var(--muted));
+}
+
 .banner {
   width: 100%;
   max-width: 100%;

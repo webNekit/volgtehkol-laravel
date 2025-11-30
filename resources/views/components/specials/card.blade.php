@@ -23,7 +23,7 @@
                                 @if($special->cost == 0)
                                     бюджет
                                 @else
-                                    {{ number_format($special->cost, 0, '', ' ') }} руб. за год
+                                    внебюджет
                                 @endif
                             </span>
                         </li>
