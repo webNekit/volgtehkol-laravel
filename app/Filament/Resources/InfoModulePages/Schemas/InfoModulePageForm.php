@@ -14,7 +14,6 @@ class InfoModulePageForm
 
     public static function configure(Schema $schema): Schema
     {
-        // Опции страниц для данного модуля
         $pageOptions = [
             'basics' => 'Основные сведения',
             'structure' => 'Структура и органы управления образовательного процесса',
@@ -25,6 +24,9 @@ class InfoModulePageForm
             'scholarships' => 'Стипендии и меры поддержки обучающихся',
             'catering' => 'Организация питания в образовательной организации',
             'standards' => 'Образовательные стандарты и требования',
+            'accessibleEnvironment' => 'Доступная среда',
+            'internationalCooperation' => 'Международное сотрудничество',
+            'sredneahtubinskBranch' => 'Среднеахтубинский филиал ГБПОУ "Волгоградский технический колледж"',
         ];
 
         return $schema

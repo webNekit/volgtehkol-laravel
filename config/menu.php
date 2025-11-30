@@ -17,6 +17,9 @@ return [
             ['name' => 'Стипендии и меры поддержки обучающихся', 'route' => 'info::scholarships'],
             ['name' => 'Организация питания в образовательной организации', 'route' => 'info::catering'],
             ['name' => 'Образовательные стандарты и требования', 'route' => 'info::standards'],
+            ['name' => 'Доступная среда', 'route' => 'info::accessibleEnvironment'],
+            ['name' => 'Международное сотрудничество', 'route' => 'info::internationalCooperation'],
+            ['name' => 'Среднеахтубинский филиал ГБПОУ "Волгоградский технический колледж"', 'route' => 'info::sredneahtubinskBranch'],
         ],
     ],
     [

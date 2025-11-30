@@ -17,9 +17,7 @@ class InfoController extends Controller
     {
         $page = ModulePage::where('module', 'info')
             ->where('page_key', $pageKey)
-            ->first(); // убрали firstOrFail()
-
-        // Если страница не найдена, создаем заглушку
+            ->first();
         if (!$page) {
             $page = (object)[
                 'title'   => 'Страница редактируется',
@@ -56,4 +54,7 @@ class InfoController extends Controller
     public function scholarships() { return $this->renderPage('scholarships'); }
     public function catering()     { return $this->renderPage('catering'); }
     public function standards()    { return $this->renderPage('standards'); }
+    public function accessibleEnvironment()    { return $this->renderPage('accessibleEnvironment'); }
+    public function internationalCooperation()    { return $this->renderPage('internationalCooperation'); }
+    public function sredneahtubinskBranch()    { return $this->renderPage('sredneahtubinskBranch'); }
 }

@@ -21,6 +21,9 @@ class Sidebar {
         'info::scholarships',
         'info::catering',
         'info::standards',
+        'info::accessibleEnvironment',
+        'info::internationalCooperation',
+        'info::sredneahtubinskBranch',
 
         'college::basics',
         'college::structure',

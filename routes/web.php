@@ -23,6 +23,9 @@ Route::prefix('info')->group(function () {
         Route::get('/scholarships', [\App\Http\Controllers\Info\InfoController::class, 'scholarships'])->name('scholarships');
         Route::get('/catering', [\App\Http\Controllers\Info\InfoController::class, 'catering'])->name('catering');
         Route::get('/standards', [\App\Http\Controllers\Info\InfoController::class, 'standards'])->name('standards');
+        Route::get('/accessible-environment', [\App\Http\Controllers\Info\InfoController::class, 'accessibleEnvironment'])->name('accessibleEnvironment');
+        Route::get('/international-cooperation', [\App\Http\Controllers\Info\InfoController::class, 'internationalCooperation'])->name('internationalCooperation');
+        Route::get('/sredneahtubinsk-branch', [\App\Http\Controllers\Info\InfoController::class, 'sredneahtubinskBranch'])->name('sredneahtubinskBranch');
     });
     Route::namespace('Docs')->as('docs::')->group(function () {
         Route::get('/documents', [\App\Http\Controllers\Docs\DocsController::class, 'index'])->name('index');
