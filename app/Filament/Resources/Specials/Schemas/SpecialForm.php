@@ -30,7 +30,7 @@ class SpecialForm
                                 'заочная' => 'Заочная форма обучения',
                             ])->columnSpanFull()->label('Форма обучения'),
                             TextInput::make('title')->label('Название')->required(),
-                            TextInput::make('code')->label('Код специальности')->mask('99.99.99')->required(),
+                            TextInput::make('code')->label('Код специальности')->required(),
                             TextInput::make('level_middle')->label('Срок обучения на базе 9 классов')->placeholder('3 года 10 месяцев'),
                             TextInput::make('level_max')->label('Срок обучения на базе 11 классов')->placeholder('2 года 10 месяцев'),
                             TextInput::make('cost')->suffix('рублей')->label('Стоимость'),
