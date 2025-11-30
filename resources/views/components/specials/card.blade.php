@@ -8,7 +8,7 @@
             @endif
             <div class="specialization-card__head">
                 <h3 class="specialization-card__title text-md">{{ $special->title }}</h3>
-                <h4 class="specialization-card__subtitle text-sm">на базе {{ $special->level }} классов</h4>
+{{--                <h4 class="specialization-card__subtitle text-sm">на базе {{ $special->level }} классов</h4>--}}
             </div>
             <div class="specialization-card__content">
                 <div class="specialization-card__info">
