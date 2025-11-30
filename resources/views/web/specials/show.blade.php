@@ -19,8 +19,14 @@
                                         <div class="program-learning__value">{{ $special->qualification }}</div>
                                     </li>
                                     <li class="program-learning__item">
-                                        <div class="program-learning__key">Цена за год</div>
-                                        <div class="program-learning__value">{{ number_format($special->cost, 0, '', ' ') }} рублей</div>
+                                        <div class="program-learning__key">&nbsp;</div>
+                                        <div class="program-learning__value">
+                                            @if($special->cost == 0)
+                                                Бюджет
+                                            @else
+                                                Внебюджет
+                                            @endif
+                                        </div>
                                     </li>
                                     @if($special->level_middle)
                                         <li class="program-learning__item">
