@@ -15,10 +15,6 @@
                             <div class="program-learning__body">
                                 <ul class="program-learning__list">
                                     <li class="program-learning__item">
-                                        <div class="program-learning__key">Квалификация</div>
-                                        <div class="program-learning__value">{{ $special->qualification }}</div>
-                                    </li>
-                                    <li class="program-learning__item">
                                         <div class="program-learning__key">&nbsp;</div>
                                         <div class="program-learning__value">
                                             @if($special->cost == 0)
@@ -27,6 +23,10 @@
                                                 Внебюджет
                                             @endif
                                         </div>
+                                    </li>
+                                    <li class="program-learning__item">
+                                        <div class="program-learning__key">Квалификация</div>
+                                        <div class="program-learning__value">{{ $special->qualification }}</div>
                                     </li>
                                     @if($special->level_middle)
                                         <li class="program-learning__item">
