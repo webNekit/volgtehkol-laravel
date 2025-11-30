@@ -772,8 +772,8 @@ button {
   list-style: none;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  column-gap: 0.875rem;
+    flex-wrap: wrap;
+  gap: 0.875rem;
 }
 
 .sidebar {
