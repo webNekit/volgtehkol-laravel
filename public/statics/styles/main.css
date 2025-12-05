@@ -780,7 +780,16 @@ button {
   display: flex;
   align-items: center;
     flex-wrap: wrap;
-  gap: 0.875rem;
+  gap: 10px;
+}
+
+
+.navbar__link {
+    padding: 8px 12px;
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    border-radius: var(--radius);
+    transition: background 300ms ease-in-out;
 }
 
 .sidebar {
