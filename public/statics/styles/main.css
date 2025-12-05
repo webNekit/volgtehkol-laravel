@@ -277,6 +277,7 @@ td p:has(>&nbsp;) {
 
 .page-content a {
     color: hsl(var(--primary));
+    text-decoration: underline;
 }
 
 .page-content img {
