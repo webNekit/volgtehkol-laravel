@@ -482,6 +482,8 @@ button {
   margin: 0;
   padding: 0;
   list-style: none;
+    max-height: 420px;
+    overflow-y: auto;
 }
 .dropdown-menu__item {
   margin: 0;
