@@ -648,7 +648,7 @@ button {
   column-gap: 1.5rem;
 }
 .header__row:is(.header__row--bottom) {
-  padding-block: 0.875rem;
+  padding-block: 8px;
   background-color: hsl(var(--secondary));
 }
 @media screen and (max-width: 768.98px) {
@@ -780,7 +780,7 @@ button {
   display: flex;
   align-items: center;
     flex-wrap: wrap;
-  gap: 10px;
+  gap: 8px;
 }
 
 
@@ -789,7 +789,12 @@ button {
     background-color: hsl(var(--background));
     color: hsl(var(--foreground));
     border-radius: var(--radius);
-    transition: background 300ms ease-in-out;
+    transition: all 200ms linear!important;
+}
+
+.navbar__link:hover {
+    color: white !important;
+    background-color: #0b2539 !important;
 }
 
 .sidebar {
