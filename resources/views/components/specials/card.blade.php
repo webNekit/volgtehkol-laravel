@@ -28,12 +28,12 @@
                             </span>
                         </li>
                         <li class="specialization-card__info-item">
-                            <span class="specialization-card__info-key">Срок обучения (на базе 11 кл.)</span>
+                            <span class="specialization-card__info-key">Срок обучения</span>
                             <span class="specialization-card__info-value">{{ $special->level_max }}</span>
                         </li>
                         @if($special->level_middle)
                             <li class="specialization-card__info-item">
-                                <span class="specialization-card__info-key">Срок обучения (на базе 9 кл.)</span>
+                                <span class="specialization-card__info-key">Срок обучения</span>
                                 <span class="specialization-card__info-value">{{ $special->level_middle }}</span>
                             </li>
                         @else

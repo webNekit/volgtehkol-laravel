@@ -9,7 +9,7 @@ class SpecialsResource
 {
     public static function index()
     {
-        return Special::query()->where('is_active', true)->orderBy('created_at', 'desc')->get();
+        return Special::query()->where('is_active', true)->orderBy('code', 'asc')->get();
     }
 
     public static function collection()
