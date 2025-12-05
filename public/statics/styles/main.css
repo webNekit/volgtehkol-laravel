@@ -275,6 +275,10 @@ td p:has(>&nbsp;) {
     }
 }
 
+.page-content a {
+    color: var(--primary);
+}
+
 .page-content img {
     width: 100%;
     height: auto;
