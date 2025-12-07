@@ -46,19 +46,16 @@
                         </li>
 
                         {{-- Срок обучения (9 классов) --}}
-                        @if($special->level_middle)
+                        @if($special->level_middle && $special->special_category_id != 2)
                             <li class="specialization-card__info-item">
                                 <span class="specialization-card__info-key">
-                                    Срок обучения
-                                    @if($special->special_category_id != 2)
-                                        (на базе 9 кл.)
-                                    @endif
+                                    Срок обучения (на базе 9 кл.)
                                 </span>
                                 <span class="specialization-card__info-value">
                                     {{ $special->level_middle }}
                                 </span>
                             </li>
-                        @else
+                        @elseif($special->special_category_id != 2)
                             <li class="specialization-card__info-item">
                                 <span class="specialization-card__info-key">Квалификация</span>
                                 <span class="specialization-card__info-value">
