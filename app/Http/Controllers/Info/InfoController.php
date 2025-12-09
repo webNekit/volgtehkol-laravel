@@ -46,6 +46,8 @@ class InfoController extends Controller
 
     // Методы страниц
     public function basics()       { return $this->renderPage('basics'); }
+
+    public function education()       { return $this->renderPage('education'); }
     public function structure()    { return $this->renderPage('structure'); }
     public function mtResources()  { return $this->renderPage('mtResources'); }
     public function paidServices() { return $this->renderPage('paidServices'); }

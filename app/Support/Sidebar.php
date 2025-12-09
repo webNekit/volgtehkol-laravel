@@ -15,6 +15,7 @@ class Sidebar {
         'info::basics',
         'info::structure',
         'info::mtResources',
+        'info::education',
         'info::paidServices',
         'info::finance',
         'info::vacancies',

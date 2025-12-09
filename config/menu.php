@@ -8,7 +8,7 @@ return [
             ['name' => 'Основные сведения', 'route' => 'info::basics'],
             ['name' => 'Структура и органы управления образовательной организацией', 'route' => 'info::structure'],
             ['name' => 'Документы', 'route' => 'docs::index'],
-            ['name' => 'Образование', 'route' => 'specials::index'],
+            ['name' => 'Образование', 'route' => 'info::education'],
             ['name' => 'Руководство и педагогический состав', 'route' => 'staff::index'],
             ['name' => 'Материально-техническое обеспечение и оснащённость образовательного процесса', 'route' => 'info::mtResources'],
             ['name' => 'Платные образовательные услуги', 'route' => 'info::paidServices'],

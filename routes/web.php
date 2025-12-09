@@ -16,6 +16,7 @@ Route::prefix('info')->group(function () {
     Route::namespace('Info')->as('info::')->group(function () {
        Route::get('/basics', [\App\Http\Controllers\Info\InfoController::class, 'basics'])->name('basics');
         Route::get('/structure', [\App\Http\Controllers\Info\InfoController::class, 'structure'])->name('structure');
+        Route::get('/education', [\App\Http\Controllers\Info\InfoController::class, 'education'])->name('education');
         Route::get('/mt-resources', [\App\Http\Controllers\Info\InfoController::class, 'mtResources'])->name('mtResources');
         Route::get('/paid-services', [\App\Http\Controllers\Info\InfoController::class, 'paidServices'])->name('paidServices');
         Route::get('/finance', [\App\Http\Controllers\Info\InfoController::class, 'finance'])->name('finance');
