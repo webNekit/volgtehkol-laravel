@@ -35,4 +35,10 @@ return [
         ],
     ],
 
+    'vk' => [
+        'group_id' => env('VK_GROUP_ID'),
+        'token' => env('VK_TOKEN'),
+        'version' => env('VK_API_VERSION', '5.199'),
+    ],
+
 ];

@@ -5,5 +5,6 @@
         <livewire:specials.section :specials="$specials" />
         <livewire:news.section />
         <livewire:events.section :events="$events" />
+        <livewire:vk-news />
     </div>
 </x-app>
