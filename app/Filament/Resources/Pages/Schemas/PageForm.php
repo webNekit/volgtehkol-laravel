@@ -35,10 +35,11 @@ class PageForm
                             Forms\Components\RichEditor::make('content')
                                 ->label('Контент')
                                 ->toolbarButtons([
-                                    'bold', 'italic', 'underline', 'strike',
-                                    'link', 'bulletList', 'orderedList',
-                                    'blockquote', 'codeBlock', 'h2', 'h3',
-                                    'undo', 'redo', 'table'
+                                    ['bold', 'italic', 'underline', 'strike', 'subscript', 'superscript', 'link'],
+                                    ['h2', 'h3', 'alignStart', 'alignCenter', 'alignEnd'],
+                                    ['blockquote', 'codeBlock', 'bulletList', 'orderedList'],
+                                    ['table', 'attachFiles'],
+                                    ['undo', 'redo'],
                                 ])
                                 ->columnSpanFull(),
 
@@ -69,10 +70,31 @@ class PageForm
                                         ->label('Файл')
                                         ->disk('public')
                                         ->directory("pages_docs")
-                                        ->storeFileNamesIn('file'), // <-- эта строчка
+                                        ->storeFileNamesIn('file')
+                                        ->afterStateUpdated(function ($state, $set, $record, $component) {
+                                    if ($state) {
+                                        // Если пришёл объект UploadedFile
+                                        if (!is_string($state)) {
+                                            $path = $state->store('module_pages_docs', 'public');
+                                        } else {
+                                            $path = $state;
+                                        }
+
+                                        $url = asset("storage/$path");
+
+                                        // Автоматически ставим ссылку в поле 'link'
+                                        $set('link', $url);
+                                    }
+                                }),
                                     Forms\Components\TextInput::make('caption')
                                         ->label('Название файла')
                                         ->nullable(),
+                                    Forms\Components\TextInput::make('link')
+                                        ->label('Ссылка на файл')
+                                        ->url()
+                                        ->disabled()
+                                        ->copyable(copyMessage: 'Скопировано!', copyMessageDuration: 1500)
+                                        ->columnSpanFull(),
                                 ])
                                 ->collapsible()
                                 ->createItemButtonLabel('Добавить файл'),

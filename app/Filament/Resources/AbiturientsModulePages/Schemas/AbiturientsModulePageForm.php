@@ -7,6 +7,7 @@ use Filament\Schemas\Components\Grid;
 use Filament\Schemas\Components\Group;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
+use Illuminate\Support\Facades\Storage;
 
 class AbiturientsModulePageForm
 {
@@ -35,16 +36,21 @@ class AbiturientsModulePageForm
                 Group::make()->schema([
                     Grid::make()->schema([
                         Section::make('Основная информация')->schema([
+                            // RichEditor
                             Forms\Components\RichEditor::make('content')
                                 ->label('Контент')
                                 ->toolbarButtons([
-                                    'bold', 'italic', 'underline', 'strike',
-                                    'link', 'bulletList', 'orderedList',
-                                    'blockquote', 'codeBlock', 'h2', 'h3',
-                                    'undo', 'redo', 'table'
+                                    ['bold', 'italic', 'underline', 'strike', 'subscript', 'superscript', 'link'],
+                                    ['h2', 'h3', 'alignStart', 'alignCenter', 'alignEnd'],
+                                    ['blockquote', 'codeBlock', 'bulletList', 'orderedList'],
+                                    ['table', 'attachFiles'],
+                                    ['undo', 'redo'],
                                 ])
                                 ->columnSpanFull(),
+
                         ])->columnSpanFull(),
+
+                        // Repeater для изображений
                         Section::make()->schema([
                             Forms\Components\Repeater::make('images')
                                 ->label('Изображения')
@@ -61,6 +67,8 @@ class AbiturientsModulePageForm
                                 ->collapsible()
                                 ->createItemButtonLabel('Добавить изображение'),
                         ])->columnSpanFull(),
+
+                        // Repeater для файлов
                         Section::make()->schema([
                             Forms\Components\Repeater::make('files')
                                 ->label('Файлы')
@@ -68,14 +76,40 @@ class AbiturientsModulePageForm
                                     Forms\Components\FileUpload::make('file')
                                         ->label('Файл')
                                         ->disk('public')
-                                        ->directory("module_pages_docs"),
+                                        ->directory("module_pages_docs")
+                                        ->enableOpen()
+                                        ->afterStateUpdated(function ($state, $set, $record, $component) {
+                                            if ($state) {
+                                                // Если пришёл объект UploadedFile
+                                                if (!is_string($state)) {
+                                                    $path = $state->store('module_pages_docs', 'public');
+                                                } else {
+                                                    $path = $state;
+                                                }
+
+                                                $url = asset("storage/$path");
+
+                                                // Автоматически ставим ссылку в поле 'link'
+                                                $set('link', $url);
+                                            }
+                                        }),
+
                                     Forms\Components\TextInput::make('caption')
                                         ->label('Название файла')
                                         ->nullable(),
+
+                                    Forms\Components\TextInput::make('link')
+                                        ->label('Ссылка на файл')
+                                        ->url()
+                                        ->disabled()
+                                        ->copyable(copyMessage: 'Скопировано!', copyMessageDuration: 1500)
+                                        ->columnSpanFull(),
                                 ])
                                 ->collapsible()
                                 ->createItemButtonLabel('Добавить файл'),
                         ])->columnSpanFull(),
+
+                        // Repeater для ссылок
                         Section::make()->schema([
                             Forms\Components\Repeater::make('links')
                                 ->label('Ссылки')
@@ -92,6 +126,8 @@ class AbiturientsModulePageForm
                                 ->createItemButtonLabel('Добавить ссылку'),
                         ])->columnSpanFull(),
                     ])->columnSpan(4),
+
+                    // Основные поля страницы
                     Grid::make()->schema([
                         Section::make()->schema([
                             Forms\Components\Hidden::make('module')
@@ -109,7 +145,7 @@ class AbiturientsModulePageForm
                                 ->unique(
                                     table: 'module_pages',
                                     column: 'page_key',
-                                    ignoreRecord: true, // разрешает редактировать существующую запись
+                                    ignoreRecord: true,
                                     modifyRuleUsing: fn ($rule) =>
                                     $rule->where('module', self::$modulePrefix)
                                 )
