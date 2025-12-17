@@ -7,11 +7,16 @@ use Livewire\Component;
 
 class VkNews extends Component
 {
-    public $posts = [];
+    public array $sliderPosts = [];
+    public array $cardPosts   = [];
 
     public function mount(VkService $vk)
     {
-        $this->posts = $vk->getPosts(20);
+        // 7 в слайдер + 4 в карточки
+        $posts = collect($vk->getPosts(11));
+
+        $this->sliderPosts = $posts->take(7)->values()->toArray();
+        $this->cardPosts   = $posts->skip(7)->take(4)->values()->toArray();
     }
 
     public function render()

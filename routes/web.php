@@ -59,6 +59,7 @@ Route::prefix('college')->group(function () {
     Route::namespace('News')->as('news::')->group(function () {
         Route::get('/news', [\App\Http\Controllers\News\NewsController::class, 'index'])->name('index');
         Route::get('/news/{slug}/show', [\App\Http\Controllers\News\NewsController::class, 'show'])->name('show');
+        Route::get('/news/vk/{id}', [\App\Http\Controllers\News\NewsController::class, 'showVk'])->name('vk.show');
     });
     Route::namespace('Contact')->as('contacts::')->group(function () {
         Route::get('/contacts', [\App\Http\Controllers\Contact\ContactController::class, 'index'])->name('index');
