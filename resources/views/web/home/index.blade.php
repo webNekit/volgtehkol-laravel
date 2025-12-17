@@ -4,7 +4,7 @@
 {{--        <livewire:banner.section />--}}
         <livewire:specials.section :specials="$specials" />
 {{--        <livewire:news.section />--}}
-        <livewire:events.section :events="$events" />
         <livewire:vk-news />
+        <livewire:events.section :events="$events" />
     </div>
 </x-app>
