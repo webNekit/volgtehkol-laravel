@@ -129,6 +129,10 @@
   row-gap: var(--gap);
 }
 
+img {
+    max-width: 100%;
+}
+
 .tooltip {
   position: relative;
 }
@@ -1807,6 +1811,55 @@ section:is(.section--specialties) {
   line-height: 1.5;
   font-size: clamp(1rem, 0.9071428571rem + 0.380952381vw, 1.25rem);
 }
+
+/* ===== GALLERY GRID ===== */
+
+.article-gallery {
+    display: grid;
+    gap: 12px;
+    margin: 24px 0 32px;
+}
+
+.article-gallery img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 14px;
+    display: block;
+}
+
+/* ===== 1 IMAGE ===== */
+.article-gallery--count-1 {
+    grid-template-columns: 1fr;
+}
+
+/* ===== 2 IMAGES ===== */
+.article-gallery--count-2 {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+/* ===== 3 IMAGES ===== */
+.article-gallery--count-3 {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.article-gallery--count-3 a:first-child {
+    grid-column: 1 / -1;
+}
+
+/* ===== 4+ IMAGES ===== */
+.article-gallery--count-4,
+.article-gallery--count-5,
+.article-gallery--count-6 {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.article-gallery--count-4 a:first-child,
+.article-gallery--count-5 a:first-child,
+.article-gallery--count-6 a:first-child {
+    grid-column: 1 / -1;
+}
+
 
 .single-education {
   padding-block: clamp(1.125rem, 0.8rem + 1.3333333333vw, 2rem);

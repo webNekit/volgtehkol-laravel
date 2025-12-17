@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{{ $title ?? "Главная страница" }}</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"/>
+    <link rel="stylesheet" href="https://unpkg.com/photoswipe@5/dist/photoswipe.css">
     <link rel="stylesheet" href="{{ asset('statics/styles/libs/swiper-bundle.min.css') }}">
     <link rel="stylesheet" href="{{ asset('statics/styles/normalize.css') }}">
     <link rel="stylesheet" href="{{ asset('statics/styles/main.css') }}">
@@ -40,6 +41,7 @@
         </div>
     </div>
 </div>
+<script src="{{ asset('statics/scripts/vendors/fslightbox.js') }}"></script>
 <script src="{{ asset('statics/scripts/vendors/swiper-bundle.min.js') }}"></script>
 <script type="module" src="{{ asset('statics/scripts/app.js') }}"></script>
 @livewireScripts
