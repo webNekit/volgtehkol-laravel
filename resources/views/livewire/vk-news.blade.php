@@ -1,4 +1,4 @@
-<section class="section section--news" id="news-section">
+<section class="section section--news" id="news-section" style="background: #fff;">
     <div class="section__container container">
         <div class="section__header">
             <h2 class="section__title">Новости</h2>
