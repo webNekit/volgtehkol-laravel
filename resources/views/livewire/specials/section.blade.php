@@ -1,4 +1,4 @@
-<section class="section section--specialties" id="specialties-section">
+<section class="section section--specialties" id="specialties-section" style="background-image: url('{{ asset('statics/img/gradient-b.png') }}') !important;">
     @foreach($specials_default as $category)
         <div class="section__container container">
             <div class="section__header">
