@@ -1958,6 +1958,7 @@ section:is(.section--specialties) {
 }
 
 .footer {
+  background-color: hsl(var(--background));
   padding-block: clamp(2.125rem, 1.7071428571rem + 1.7142857143vw, 3.25rem);
   border-top: 0.0625rem solid hsl(var(--border));
 }
