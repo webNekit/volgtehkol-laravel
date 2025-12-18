@@ -50,7 +50,7 @@
         </div>
     </div>
     @if($hasSections)
-        <div class="header__row header__row--bottom">
+        <div class="header__row header__row--bottom" style="background-image: url('{{ asset('statics/img/300х300.png') }}'); background-size: 120px;">
             <div class="header__container container">
                 <livewire:ui.submenu />
             </div>
