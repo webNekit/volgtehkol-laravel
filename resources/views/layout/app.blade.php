@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="{{ asset('statics/styles/main.css') }}">
     @livewireStyles
 </head>
-<body class="__application" id="app" style="background-image: url('{{ asset('statics/img/gradient-b.png') }}'); background-size: 100%;">
+<body class="__application" id="app" style="background-image: url('{{ asset('statics/img/gradient-c.png') }}'); background-size: 100%;">
 @include('layout.partials.mobile')
 <div aria-hidden="true" class="application__overlay" data-overlay></div>
 <div class="application__template">
