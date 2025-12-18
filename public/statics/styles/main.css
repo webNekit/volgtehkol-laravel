@@ -910,6 +910,12 @@ button {
     padding-block-end: 24px;
 }
 
+@media screen and (max-width: 840px) {
+    .workshops {
+        display: none;
+    }
+}
+
 .workshops__slider-wrapper {
     margin-block-end: 24px;
 }
