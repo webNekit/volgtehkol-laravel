@@ -4,6 +4,7 @@ namespace App\Livewire\Ui;
 
 use Livewire\Component;
 use App\Models\Contact;
+use App\Models\Section;
 
 class Mobile extends Component
 {
@@ -13,22 +14,42 @@ class Mobile extends Component
 
     public function mount()
     {
+        // Основное меню (из конфига)
         $this->menu = config('menu');
-        $this->submenu = config('submenu');
 
-        // Загружаем активные контакты для шапки и мобильного меню
+        // 🔹 Опциональное меню (как в десктопе)
+        $this->submenu = Section::where('status', true)
+            ->with([
+                'pages' => fn ($q) => $q->where('status', true),
+            ])
+            ->get()
+            ->map(function ($section) {
+                return [
+                    'title' => $section->title,
+                    'items' => $section->pages->map(function ($page) {
+                        return [
+                            'name' => $page->title,
+                            'route' => 'common::show',
+                            'params' => ['slug' => $page->slug],
+                        ];
+                    })->toArray(),
+                ];
+            })
+            ->toArray();
+
+        // Контакты
         $this->contacts = Contact::where('is_active', true)
             ->where('is_header', true)
             ->get()
+            ->map(fn ($c) => [
+                'type'  => $c->type,
+                'value' => $c->value,
+            ])
             ->toArray();
     }
 
     public function render()
     {
-        return view('livewire.ui.mobile', [
-            'menu' => $this->menu,
-            'submenu' => $this->submenu,
-            'contacts' => $this->contacts,
-        ]);
+        return view('livewire.ui.mobile');
     }
 }
