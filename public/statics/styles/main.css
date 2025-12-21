@@ -2166,6 +2166,7 @@ section:is(.section--specialties) {
   padding: 0;
   width: 100%;
   list-style: none;
+    overflow-y: auto;
   display: grid;
   row-gap: 0.75rem;
 }
