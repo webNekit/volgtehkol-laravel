@@ -75,6 +75,7 @@
                         </div>
                     @endif
                 </div>
+                <livewire:ui.contact-form />
             </div>
         </section>
     </div>

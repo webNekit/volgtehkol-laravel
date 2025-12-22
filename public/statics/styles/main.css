@@ -2097,6 +2097,61 @@ section:is(.section--specialties) {
   font-size: clamp(0.875rem, 0.8285714286rem + 0.1904761905vw, 1rem);
 }
 
+.contact-form {
+    max-width: 100%;
+    width: 100%;
+    margin: auto;
+}
+
+.contact-form__form {
+    display: grid;
+    gap: var(--gap);
+}
+
+.contact-form__field label {
+    font-weight: var(--font-medium);
+    margin-bottom: 4px;
+    display: block;
+}
+
+.contact-form__field input,
+.contact-form__field textarea {
+    width: 100%;
+    padding: 12px;
+    border-radius: var(--radius);
+    border: 1px solid hsl(var(--border));
+    background: hsl(var(--background));
+    color: hsl(var(--foreground));
+}
+
+.contact-form__button {
+    background: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
+    padding: 12px;
+    border-radius: var(--radius);
+    font-weight: var(--font-semibold);
+    cursor: pointer;
+    width: max-content;
+}
+
+.contact-form__success {
+    background: hsl(var(--primary) / 0.1);
+    padding: 12px;
+    border-radius: var(--radius);
+    margin-bottom: 12px;
+}
+
+.spinner {
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
 .dropdown__content {
   --duration: 0.6s;
   max-height: 0;
