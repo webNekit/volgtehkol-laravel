@@ -2,7 +2,7 @@
     <div class="welcome-section__wrapper">
         <div class="welcome-section__row welcome-section__row--top">
             <div class="welcome-section__container container">
-                <h2 class="welcome-section__title" style="text-transform: uppercase">Учебно-производственный технопарк колледжа</h2>
+                <h2 class="welcome-section__title" style="text-transform: uppercase; font-size: 48px;">Учебно-производственный технопарк колледжа</h2>
             </div>
         </div>
 {{--        <div class="welcome-section__row welcome-section__row--bottom">--}}
