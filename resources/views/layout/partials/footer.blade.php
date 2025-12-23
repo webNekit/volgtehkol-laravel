@@ -19,13 +19,12 @@
                     <ul class="footer-contacts__list">
                         <li class="footer-contacts__item">
                             <span class="footer-contacts__item-label">Приемная директора</span>
-                            <a href="tel:+78005553255" class="footer-contacts__item-phone">+7(800)555-32-55</a>
-                            <a href="mailto:priem@volgtehkol.com" class="footer-contacts__item-email">priem@volgtehkol.com</a>
+                            <a href="tel:+78442326071" class="footer-contacts__item-phone">8(8442) 32-60-71</a>
+                            <a href="mailto:priem@volgtehkol.com" class="footer-contacts__item-email">volgtehkol@volganet.ru</a>
                         </li>
                         <li class="footer-contacts__item">
                             <span class="footer-contacts__item-label">Приемная комиссия</span>
-                            <a href="tel:+78005553255" class="footer-contacts__item-phone">+7(800)555-32-55</a>
-                            <a href="mailto:priem@volgtehkol.com" class="footer-contacts__item-email">priem@volgtehkol.com</a>
+                            <a href="tel:+78442459138" class="footer-contacts__item-phone">8(8442) 45-91-38</a>
                         </li>
                     </ul>
                 </div>
