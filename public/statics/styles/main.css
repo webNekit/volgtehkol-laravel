@@ -317,8 +317,8 @@ td p:has(>&nbsp;) {
   column-gap: 0.5rem;
 }
 .logo__img {
-  width: 4rem;
-  height: 4rem;
+  width: 5.5rem;
+  height: 5.5rem;
   object-fit: contain;
 }
 .logo__alt {
@@ -328,8 +328,14 @@ td p:has(>&nbsp;) {
   display: block;
 }
 
-.logo__alt span:nth-child(2) { padding-inline-start: 24px; }
-.logo__alt span:nth-child(3) { padding-inline-start: 64px; }
+.logo__alt.logo__alt--desktop span:first-child {
+    font-size: 22px;
+}
+
+.logo__alt.logo__alt--desktop span:last-child {
+    font-size: 18px;
+    color: hsl(var(--primary));
+}
 
 h1, h2, h3, h4, h5, h6 {
   margin: 0;
@@ -630,7 +636,8 @@ button {
   width: 100%;
 }
 .header__row:is(.header__row--top) {
-  padding-block: 0.875rem;
+  /*padding-block: 0.875rem;*/
+  padding-block: 24px;
   border-bottom: 0.0625rem solid hsl(var(--border));
 }
 .header__row:is(.header__row--top) .header__container {
@@ -669,6 +676,7 @@ button {
   align-self: stretch;
 }
 .header__year {
+  display: none;
   padding-inline-end: 1.25rem;
   font-size: 0.875rem;
   font-weight: var(--font-medium);
@@ -2221,7 +2229,7 @@ section:is(.section--specialties) {
   padding: 0;
   width: 100%;
   list-style: none;
-    overflow-y: auto;
+  overflow-y: scroll;
   display: grid;
   row-gap: 0.75rem;
 }

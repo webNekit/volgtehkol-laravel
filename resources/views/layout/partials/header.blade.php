@@ -39,10 +39,9 @@
                 <a href="{{ route('home::index') }}" class="logo__link">
                     <img src="{{ asset('statics/img/logo.png') }}" alt="Логотип ГБПОУ Волгоградский технический колледж"
                          class="logo__img">
-                    <div class="logo__alt">
-                        <span>Волгоградский</span>
-                        <span>Технический</span>
-                        <span>Колледж</span>
+                    <div class="logo__alt logo__alt--desktop">
+                        <span>Волгоградский технический колледж</span>
+                        <span>Создаем будущее вместе</span>
                     </div>
                 </a>
             </div>
