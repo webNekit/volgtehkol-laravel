@@ -41,7 +41,7 @@
                          class="logo__img">
                     <div class="logo__alt logo__alt--desktop">
                         <span>Волгоградский технический колледж</span>
-                        <span>Создаем будущее вместе</span>
+                        <span># Создаем будущее вместе</span>
                     </div>
                 </a>
             </div>

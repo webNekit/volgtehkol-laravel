@@ -329,12 +329,15 @@ td p:has(>&nbsp;) {
 }
 
 .logo__alt.logo__alt--desktop span:first-child {
+    color: #003EC4;
     font-size: 22px;
+    font-weight: 600;
+    text-transform: uppercase;
 }
 
 .logo__alt.logo__alt--desktop span:last-child {
-    font-size: 20px;
-    color: hsl(var(--primary));
+    color: #003EC4;
+    font-size: 18px;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -684,7 +687,7 @@ button {
   border-right: 0.0625rem solid hsl(var(--border));
 }
 .header__navigation {
-  max-width: 53.75rem;
+  max-width: 45rem;
 }
 
 .header-contacts:is(.header__contacts) {
@@ -905,12 +908,28 @@ button {
     padding-block-start: 48px;
 }
 
+.welcome-section__container--flex {
+    display: grid;
+    row-gap: 24px;
+}
+
+.welcome-section__icons {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.welcome-section__icon {
+    width: 80px;
+    height: 80px;
+}
+
 .welcome-section .welcome-section__subtitle {
 
 }
 
 .welcome-section .welcome-section__title {
-    font-size: 64px;
+    font-size: 34px;
 }
 
 .workshops {
@@ -1514,7 +1533,7 @@ section:is(.section--specialties) {
   width: 100%;
   height: 100%;
   color: hsl(var(--muted-foreground));
-  background-color: hsl(var(--muted));
+  background: hsl(var(--muted));
   border-radius: var(--radius);
   transition: all var(--duration) ease-in-out;
 }
@@ -1533,7 +1552,7 @@ section:is(.section--specialties) {
 
 .specialization-card:is(:hover, :active) {
   color: hsl(var(--primary-foreground));
-  background-color: hsl(var(--primary));
+  background: var(--bg-card);
 }
 .specialization-card:is(:hover, :active) .specialization-card__title {
   color: inherit;

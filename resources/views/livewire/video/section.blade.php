@@ -1,8 +1,12 @@
 <section class="welcome welcome-section" id="welcome-section">
     <div class="welcome-section__wrapper">
         <div class="welcome-section__row welcome-section__row--top">
-            <div class="welcome-section__container container">
-                <h2 class="welcome-section__title" style="text-transform: uppercase;">Учебно-производственный технопарк колледжа</h2>
+            <div class="welcome-section__container welcome-section__container--flex container">
+                <h2 class="welcome-section__title" style="text-transform: uppercase;">Учебно-производственный<br>технопарк колледжа</h2>
+                <div class="welcome-section__icons">
+                    <img src="{{ asset('statics/img/nac-logo.png') }}" alt="" class="welcome-section__icon">
+                    <img src="{{ asset('statics/img/bas-logo.png') }}" alt="" class="welcome-section__icon">
+                </div>
             </div>
         </div>
 {{--        <div class="welcome-section__row welcome-section__row--bottom">--}}

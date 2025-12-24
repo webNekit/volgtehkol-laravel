@@ -1,4 +1,4 @@
-<article class="specialties-collection__slider-card specialization-card">
+<article class="specialties-collection__slider-card specialization-card" style="--bg-card: url('{{ asset('/statics/img/300x300.png') }}')">
     <a href="{{ route('specials::show', ['id' => $special->id]) }}" class="specialization-card__link">
         <div class="specialization-card__body">
 
