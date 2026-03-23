@@ -15,7 +15,10 @@ class CategoryDocumentsTable
         return $table
             ->columns([
                 TextColumn::make('title')->label('Название'),
+                TextColumn::make('order')->label('Порядковый номер'),
             ])
+            ->defaultSort('order', 'asc')
+            ->reorderable('order')
             ->filters([
                 //
             ])

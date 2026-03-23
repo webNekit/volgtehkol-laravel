@@ -19,6 +19,10 @@ class CategoryDocumentForm
                         TextInput::make('title')
                             ->label('Название')
                             ->required(),
+                        TextInput::make('order')
+                            ->label('Порядковый номер')
+                            ->numeric()
+                            ->helperText('Если указать существующий номер, остальные сдвинутся вниз.'),
                     ])->columnSpan(4),
                     Section::make()->schema([
                         Toggle::make('is_active')->label('Отображать на сайте')->default(false),

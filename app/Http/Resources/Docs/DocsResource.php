@@ -13,7 +13,7 @@ class DocsResource {
                 ->orderBy('created_at', 'desc');
         }])
             ->where('is_active', true)
-            ->orderBy('title')
+            ->orderBy('order')
             ->get();
     }
 }
