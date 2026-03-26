@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"/>
     <link rel="stylesheet" href="https://unpkg.com/photoswipe@5/dist/photoswipe.css">
     <link rel="stylesheet" href="{{ asset('statics/styles/libs/swiper-bundle.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('statics/styles/libs/bvi.min.css') }}">
     <link rel="stylesheet" href="{{ asset('statics/styles/normalize.css') }}">
     <link rel="stylesheet" href="{{ asset('statics/styles/main.css') }}">
     @livewireStyles
@@ -44,6 +45,22 @@
 <script src="{{ asset('statics/scripts/vendors/fslightbox.js') }}"></script>
 <script src="{{ asset('statics/scripts/vendors/swiper-bundle.min.js') }}"></script>
 <script type="module" src="{{ asset('statics/scripts/app.js') }}"></script>
+<script src="{{ asset('statics/scripts/vendors/bvi.min.js') }}"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // В версии 1.0.0 плагин находится внутри объекта isvek
+        if (typeof isvek !== 'undefined' && typeof isvek.Bvi !== 'undefined') {
+            new isvek.Bvi({
+                target: '.bvi-open', // Класс вашей кнопки
+                fontSize: 24,        // Размер шрифта
+                theme: 'white'       // Тема
+            });
+            console.log('BVI успешно инициализирован!');
+        } else {
+            console.error('Плагин BVI не загрузился.');
+        }
+    });
+</script>
 @livewireScripts
 </body>
 </html>

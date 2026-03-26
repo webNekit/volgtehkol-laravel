@@ -13,7 +13,7 @@
                 <div aria-label="Элементы управления" class="header__controls header-controls">
                     <ul class="header-controls__list">
                         <li class="header-controls__item">
-                            <button aria-label="Настройки для слабовидящих" class="header-controls__target">
+                            <button aria-label="Настройки для слабовидящих" class="header-controls__target bvi-open">
                                 <i class="ri-eye-line"></i>
                             </button>
                         </li>
