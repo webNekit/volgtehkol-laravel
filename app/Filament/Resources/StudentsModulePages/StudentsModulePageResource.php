@@ -9,8 +9,9 @@ use App\Filament\Resources\StudentsModulePages\Pages\ListStudentsModulePages;
 use App\Filament\Resources\StudentsModulePages\Schemas\StudentsModulePageForm;
 use App\Filament\Resources\StudentsModulePages\Tables\StudentsModulePagesTable;
 use App\Models\ModulePage;
-use App\Models\StudentsModulePage;
-use BackedEnum;
+use App\Filament\RelationManagers\ImageAttachmentsRelationManager;
+use App\Filament\RelationManagers\FileAttachmentsRelationManager;
+use App\Filament\RelationManagers\RelatedLinksRelationManager;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
@@ -40,6 +41,15 @@ class StudentsModulePageResource extends Resource
     }
 
     public static function getRelations(): array
+    {
+        return [
+            ImageAttachmentsRelationManager::class,
+            FileAttachmentsRelationManager::class,
+            RelatedLinksRelationManager::class,
+        ];
+    }
+
+    public static function getRelationManagers(): array
     {
         return [
             //

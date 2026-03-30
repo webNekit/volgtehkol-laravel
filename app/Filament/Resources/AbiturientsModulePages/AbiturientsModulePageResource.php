@@ -8,9 +8,10 @@ use App\Filament\Resources\AbiturientsModulePages\Pages\EditAbiturientsModulePag
 use App\Filament\Resources\AbiturientsModulePages\Pages\ListAbiturientsModulePages;
 use App\Filament\Resources\AbiturientsModulePages\Schemas\AbiturientsModulePageForm;
 use App\Filament\Resources\AbiturientsModulePages\Tables\AbiturientsModulePagesTable;
-use App\Models\AbiturientsModulePage;
 use App\Models\ModulePage;
-use BackedEnum;
+use App\Filament\RelationManagers\ImageAttachmentsRelationManager;
+use App\Filament\RelationManagers\FileAttachmentsRelationManager;
+use App\Filament\RelationManagers\RelatedLinksRelationManager;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
@@ -39,6 +40,15 @@ class AbiturientsModulePageResource extends Resource
     }
 
     public static function getRelations(): array
+    {
+        return [
+            ImageAttachmentsRelationManager::class,
+            FileAttachmentsRelationManager::class,
+            RelatedLinksRelationManager::class,
+        ];
+    }
+
+    public static function getRelationManagers(): array
     {
         return [
             //

@@ -9,7 +9,9 @@ use App\Filament\Resources\InfoModulePages\Pages\ListInfoModulePages;
 use App\Filament\Resources\InfoModulePages\Schemas\InfoModulePageForm;
 use App\Filament\Resources\InfoModulePages\Tables\InfoModulePagesTable;
 use App\Models\ModulePage;
-use BackedEnum;
+use App\Filament\RelationManagers\ImageAttachmentsRelationManager;
+use App\Filament\RelationManagers\FileAttachmentsRelationManager;
+use App\Filament\RelationManagers\RelatedLinksRelationManager;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
@@ -38,6 +40,15 @@ class InfoModulePageResource extends Resource
     }
 
     public static function getRelations(): array
+    {
+        return [
+            ImageAttachmentsRelationManager::class,
+            FileAttachmentsRelationManager::class,
+            RelatedLinksRelationManager::class,
+        ];
+    }
+
+    public static function getRelationManagers(): array
     {
         return [
             //

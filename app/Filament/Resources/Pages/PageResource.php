@@ -2,6 +2,9 @@
 
 namespace App\Filament\Resources\Pages;
 
+use App\Filament\RelationManagers\ImageAttachmentsRelationManager;
+use App\Filament\RelationManagers\FileAttachmentsRelationManager;
+use App\Filament\RelationManagers\RelatedLinksRelationManager;
 use App\Enums\NavigationGroup;
 use App\Filament\Resources\Pages\Pages\CreatePage;
 use App\Filament\Resources\Pages\Pages\EditPage;
@@ -35,6 +38,15 @@ class PageResource extends Resource
     }
 
     public static function getRelations(): array
+    {
+        return [
+            ImageAttachmentsRelationManager::class,
+            FileAttachmentsRelationManager::class,
+            RelatedLinksRelationManager::class,
+        ];
+    }
+
+    public static function getRelationManagers(): array
     {
         return [
             //

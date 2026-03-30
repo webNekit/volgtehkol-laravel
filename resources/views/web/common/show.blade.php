@@ -1,43 +1,51 @@
 <x-app :title="$title">
     <div class="main__content">
         <h1>{{ $title }}</h1>
-        @if(!empty($images))
-            @foreach($images as $image)
-                @if(!empty($image['file']))
+
+        {{-- Изображения --}}
+        @if($images->where('is_visible', true)->isNotEmpty())
+            @foreach($images->where('is_visible', true) as $image)
+                @if($image->file_path)
                     <div class="page-image">
-                        <img src="{{ Storage::url($image['file']) }}" alt="{{ $image['caption'] ?? '' }}">
-                        @if(!empty($image['caption']))
-                            <p class="caption">{{ $image['caption'] }}</p>
+                        <img src="{{ asset('storage/' . $image->file_path) }}" alt="{{ $image->caption ?? '' }}">
+                        @if($image->caption)
+                            <p class="caption">{{ $image->caption }}</p>
                         @endif
                     </div>
                 @endif
             @endforeach
         @endif
-        @if(!empty($content))
+
+        {{-- Контент --}}
+        @if($content)
             <div class="page-content">
                 {!! $content !!}
             </div>
         @endif
-        @if(!empty($files))
+
+        {{-- Файлы --}}
+        @if($files->where('is_visible', true)->isNotEmpty())
             <ul class="page-files">
-                @foreach($files as $file)
-                    @if(!empty($file['file']))
+                @foreach($files->where('is_visible', true) as $file)
+                    @if($file->file_path)
                         <li>
-                            <a href="{{ Storage::url($file['file']) }}" target="_blank" style="color: hsl(var(--primary))">
-                                {{ $file['caption'] ?? basename($file['file']) }}
+                            <a href="{{ asset('storage/' . $file->file_path) }}" target="_blank" style="color: hsl(var(--primary))">
+                                {{ $file->caption ?? basename($file->file_path) }}
                             </a>
                         </li>
                     @endif
                 @endforeach
             </ul>
         @endif
-        @if(!empty($links))
+
+        {{-- Ссылки --}}
+        @if($links->where('is_visible', true)->isNotEmpty())
             <ul class="page-links">
-                @foreach($links as $link)
-                    @if(!empty($link['url']))
+                @foreach($links->where('is_visible', true) as $link)
+                    @if($link->url)
                         <li>
-                            <a href="{{ $link['url'] }}" target="_blank">
-                                {{ $link['caption'] ?? $link['url'] }}
+                            <a href="{{ $link->url }}" target="_blank">
+                                {{ $link->caption ?? $link->url }}
                             </a>
                         </li>
                     @endif

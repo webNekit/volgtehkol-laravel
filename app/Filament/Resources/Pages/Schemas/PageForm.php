@@ -21,7 +21,7 @@ class PageForm
                         Section::make('Основная информация')->schema([
                             Forms\Components\TextInput::make('title')
                                 ->live(onBlur: true)
-                                ->afterStateUpdated(fn (Set $set, ?string $state) => $set('slug', Str::slug($state)))
+                                ->afterStateUpdated(fn(Set $set, ?string $state) => $set('slug', Str::slug($state)))
                                 ->label('Заголовок страницы')
                                 ->placeholder('Например: О нас')
                                 ->required(),
@@ -44,79 +44,6 @@ class PageForm
                                 ->columnSpanFull(),
 
                         ])->columnSpanFull(),
-                        Section::make()->schema([
-                            Forms\Components\Repeater::make('images')
-                                ->label('Изображения')
-                                ->schema([
-                                    Forms\Components\FileUpload::make('file')
-                                        ->label('Файл')
-                                        ->image()
-                                        ->directory("pages_images")
-                                        ->disk('public'),
-                                    Forms\Components\TextInput::make('caption')
-                                        ->label('Подпись')
-                                        ->nullable(),
-                                ])
-                                ->collapsible()
-                                ->createItemButtonLabel('Добавить изображение'),
-                        ])->columnSpanFull(),
-
-                        // Repeater: файлы
-                        Section::make()->schema([
-                            Forms\Components\Repeater::make('documents')
-                                ->label('Файлы')
-                                ->schema([
-                                    Forms\Components\FileUpload::make('file')
-                                        ->label('Файл')
-                                        ->disk('public')
-                                        ->directory("pages_docs")
-                                        ->storeFileNamesIn('file')
-                                        ->afterStateUpdated(function ($state, $set, $record, $component) {
-                                    if ($state) {
-                                        // Если пришёл объект UploadedFile
-                                        if (!is_string($state)) {
-                                            $path = $state->store('module_pages_docs', 'public');
-                                        } else {
-                                            $path = $state;
-                                        }
-
-                                        $url = asset("storage/$path");
-
-                                        // Автоматически ставим ссылку в поле 'link'
-                                        $set('link', $url);
-                                    }
-                                }),
-                                    Forms\Components\TextInput::make('caption')
-                                        ->label('Название файла')
-                                        ->nullable(),
-                                    Forms\Components\TextInput::make('link')
-                                        ->label('Ссылка на файл')
-                                        ->url()
-                                        ->disabled()
-                                        ->copyable(copyMessage: 'Скопировано!', copyMessageDuration: 1500)
-                                        ->columnSpanFull(),
-                                ])
-                                ->collapsible()
-                                ->createItemButtonLabel('Добавить файл'),
-                        ])->columnSpanFull(),
-
-                        // Repeater: ссылки
-                        Section::make()->schema([
-                            Forms\Components\Repeater::make('links')
-                                ->label('Ссылки')
-                                ->schema([
-                                    Forms\Components\TextInput::make('url')
-                                        ->label('URL')
-                                        ->url(),
-                                    Forms\Components\TextInput::make('caption')
-                                        ->label('Название ссылки')
-                                        ->nullable(),
-                                ])
-                                ->columns(2)
-                                ->collapsible()
-                                ->createItemButtonLabel('Добавить ссылку'),
-                        ])->columnSpanFull(),
-
                     ])->columnSpan(4),
 
                     // Правая колонка: выбор раздела и статус

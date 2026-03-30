@@ -7,9 +7,19 @@ use Illuminate\Database\Eloquent\Model;
 class ModulePage extends Model
 {
     protected $guarded = [];
-    protected $casts = [
-        'images' => 'array',
-        'files' => 'array',
-        'links' => 'array',
-    ];
+
+    public function imageAttachments()
+    {
+        return $this->morphMany(\App\Models\ImageAttachment::class, 'attachable')->orderBy('sort');
+    }
+
+    public function fileAttachments()
+    {
+        return $this->morphMany(\App\Models\FileAttachment::class, 'attachable')->orderBy('sort');
+    }
+
+    public function relatedLinks()
+    {
+        return $this->morphMany(\App\Models\RelatedLink::class, 'linkable')->orderBy('sort');
+    }
 }

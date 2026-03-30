@@ -7,15 +7,13 @@ use Filament\Schemas\Components\Grid;
 use Filament\Schemas\Components\Group;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
-use Illuminate\Support\Facades\Storage;
 
 class AbiturientsModulePageForm
 {
-    public static string $modulePrefix = 'abiturients'; // префикс модуля
+    public static string $modulePrefix = 'abiturients';
 
     public static function configure(Schema $schema): Schema
     {
-        // Опции страниц для данного модуля
         $pageOptions = [
             'admissionCommittee' => 'Приемная комиссия',
             'admissionRules' => 'Правила и условия приема',
@@ -36,7 +34,6 @@ class AbiturientsModulePageForm
                 Group::make()->schema([
                     Grid::make()->schema([
                         Section::make('Основная информация')->schema([
-                            // RichEditor
                             Forms\Components\RichEditor::make('content')
                                 ->label('Контент')
                                 ->toolbarButtons([
@@ -47,87 +44,8 @@ class AbiturientsModulePageForm
                                     ['undo', 'redo'],
                                 ])
                                 ->columnSpanFull(),
-
-                        ])->columnSpanFull(),
-
-                        // Repeater для изображений
-                        Section::make()->schema([
-                            Forms\Components\Repeater::make('images')
-                                ->label('Изображения')
-                                ->schema([
-                                    Forms\Components\FileUpload::make('file')
-                                        ->label('Файл')
-                                        ->image()
-                                        ->directory("module_pages")
-                                        ->disk('public'),
-                                    Forms\Components\TextInput::make('caption')
-                                        ->label('Подпись')
-                                        ->nullable(),
-                                ])
-                                ->collapsible()
-                                ->createItemButtonLabel('Добавить изображение'),
-                        ])->columnSpanFull(),
-
-                        // Repeater для файлов
-                        Section::make()->schema([
-                            Forms\Components\Repeater::make('files')
-                                ->label('Файлы')
-                                ->schema([
-                                    Forms\Components\FileUpload::make('file')
-                                        ->label('Файл')
-                                        ->disk('public')
-                                        ->directory("module_pages_docs")
-                                        ->enableOpen()
-                                        ->afterStateUpdated(function ($state, $set, $record, $component) {
-                                            if ($state) {
-                                                // Если пришёл объект UploadedFile
-                                                if (!is_string($state)) {
-                                                    $path = $state->store('module_pages_docs', 'public');
-                                                } else {
-                                                    $path = $state;
-                                                }
-
-                                                $url = asset("storage/$path");
-
-                                                // Автоматически ставим ссылку в поле 'link'
-                                                $set('link', $url);
-                                            }
-                                        }),
-
-                                    Forms\Components\TextInput::make('caption')
-                                        ->label('Название файла')
-                                        ->nullable(),
-
-                                    Forms\Components\TextInput::make('link')
-                                        ->label('Ссылка на файл')
-                                        ->url()
-                                        ->disabled()
-                                        ->copyable(copyMessage: 'Скопировано!', copyMessageDuration: 1500)
-                                        ->columnSpanFull(),
-                                ])
-                                ->collapsible()
-                                ->createItemButtonLabel('Добавить файл'),
-                        ])->columnSpanFull(),
-
-                        // Repeater для ссылок
-                        Section::make()->schema([
-                            Forms\Components\Repeater::make('links')
-                                ->label('Ссылки')
-                                ->schema([
-                                    Forms\Components\TextInput::make('url')
-                                        ->label('URL')
-                                        ->url(),
-                                    Forms\Components\TextInput::make('caption')
-                                        ->label('Название ссылки')
-                                        ->nullable(),
-                                ])
-                                ->columns(2)
-                                ->collapsible()
-                                ->createItemButtonLabel('Добавить ссылку'),
                         ])->columnSpanFull(),
                     ])->columnSpan(4),
-
-                    // Основные поля страницы
                     Grid::make()->schema([
                         Section::make()->schema([
                             Forms\Components\Hidden::make('module')
@@ -146,7 +64,7 @@ class AbiturientsModulePageForm
                                     table: 'module_pages',
                                     column: 'page_key',
                                     ignoreRecord: true,
-                                    modifyRuleUsing: fn ($rule) =>
+                                    modifyRuleUsing: fn($rule) =>
                                     $rule->where('module', self::$modulePrefix)
                                 )
                                 ->validationMessages([

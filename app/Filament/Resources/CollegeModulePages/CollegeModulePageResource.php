@@ -8,9 +8,10 @@ use App\Filament\Resources\CollegeModulePages\Pages\EditCollegeModulePage;
 use App\Filament\Resources\CollegeModulePages\Pages\ListCollegeModulePages;
 use App\Filament\Resources\CollegeModulePages\Schemas\CollegeModulePageForm;
 use App\Filament\Resources\CollegeModulePages\Tables\CollegeModulePagesTable;
-use App\Models\CollegeModulePage;
 use App\Models\ModulePage;
-use BackedEnum;
+use App\Filament\RelationManagers\ImageAttachmentsRelationManager;
+use App\Filament\RelationManagers\FileAttachmentsRelationManager;
+use App\Filament\RelationManagers\RelatedLinksRelationManager;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
@@ -39,6 +40,15 @@ class CollegeModulePageResource extends Resource
     }
 
     public static function getRelations(): array
+    {
+        return [
+            ImageAttachmentsRelationManager::class,
+            FileAttachmentsRelationManager::class,
+            RelatedLinksRelationManager::class,
+        ];
+    }
+
+    public static function getRelationManagers(): array
     {
         return [
             //

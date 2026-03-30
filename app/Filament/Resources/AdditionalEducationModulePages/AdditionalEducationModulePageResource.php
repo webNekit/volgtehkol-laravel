@@ -8,9 +8,10 @@ use App\Filament\Resources\AdditionalEducationModulePages\Pages\EditAdditionalEd
 use App\Filament\Resources\AdditionalEducationModulePages\Pages\ListAdditionalEducationModulePages;
 use App\Filament\Resources\AdditionalEducationModulePages\Schemas\AdditionalEducationModulePageForm;
 use App\Filament\Resources\AdditionalEducationModulePages\Tables\AdditionalEducationModulePagesTable;
-use App\Models\AdditionalEducationModulePage;
 use App\Models\ModulePage;
-use BackedEnum;
+use App\Filament\RelationManagers\ImageAttachmentsRelationManager;
+use App\Filament\RelationManagers\FileAttachmentsRelationManager;
+use App\Filament\RelationManagers\RelatedLinksRelationManager;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
@@ -39,6 +40,15 @@ class AdditionalEducationModulePageResource extends Resource
     }
 
     public static function getRelations(): array
+    {
+        return [
+            ImageAttachmentsRelationManager::class,
+            FileAttachmentsRelationManager::class,
+            RelatedLinksRelationManager::class,
+        ];
+    }
+
+    public static function getRelationManagers(): array
     {
         return [
             //

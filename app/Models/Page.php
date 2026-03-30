@@ -24,6 +24,21 @@ class Page extends Model
         'status' => 'boolean',
     ];
 
+    public function imageAttachments()
+    {
+        return $this->morphMany(\App\Models\ImageAttachment::class, 'attachable')->orderBy('sort');
+    }
+
+    public function fileAttachments()
+    {
+        return $this->morphMany(\App\Models\FileAttachment::class, 'attachable')->orderBy('sort');
+    }
+
+    public function relatedLinks()
+    {
+        return $this->morphMany(\App\Models\RelatedLink::class, 'linkable')->orderBy('sort');
+    }
+
     public function section()
     {
         return $this->belongsTo(Section::class);
