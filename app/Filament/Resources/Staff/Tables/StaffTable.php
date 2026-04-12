@@ -18,6 +18,8 @@ class StaffTable
                 TextColumn::make('name')->label('ФИО сотрудника')->searchable()->sortable(),
                 TextColumn::make('position')->label('Должность')->searchable()->sortable(),
             ])
+            ->defaultSort('order', 'asc')
+            ->reorderable('order')
             ->filters([
                 //
             ])
