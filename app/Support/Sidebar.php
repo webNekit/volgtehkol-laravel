@@ -4,11 +4,13 @@ namespace App\Support;
 
 use Illuminate\Support\Facades\Route;
 
-class Sidebar {
+class Sidebar
+{
     protected static array $routes = [
         'news::index',
         'docs::index',
         'staff::index',
+        'management::index',
         'specials::index',
         'contacts::index',
 
@@ -22,7 +24,7 @@ class Sidebar {
         'info::scholarships',
         'info::catering',
         'info::standards',
-        'info::accessibleEnvironment',
+        // 'info::accessibleEnvironment',
         'info::internationalCooperation',
         'info::sredneahtubinskBranch',
 
@@ -33,7 +35,8 @@ class Sidebar {
         'college::vacancies',
         'college::virtualTour',
         'college::specials',
-        'college::management',
+        'staff::index',
+        'management::index',
         'college::news',
         'college::contacts',
 
@@ -68,7 +71,8 @@ class Sidebar {
         'additional_education::announcements',
     ];
 
-    public static function showRoutes() {
+    public static function showRoutes()
+    {
 
         // ---------------------------------
         // 1. Показывать sidebar на /common/*

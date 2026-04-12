@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Staff extends Model
+class Management extends Model
 {
     protected $guarded = [];
     protected $casts = [
@@ -15,12 +15,12 @@ class Staff extends Model
 
     protected static function booted()
     {
-        static::saving(function ($staff) {
-            if (!$staff->order) {
-                $staff->order = static::max('order') + 1;
-            } else if ($staff->isDirty('order')) {
-                $newOrder = $staff->order;
-                $oldOrder = $staff->getOriginal('order');
+        static::saving(function ($management) {
+            if (!$management->order) {
+                $management->order = static::max('order') + 1;
+            } else if ($management->isDirty('order')) {
+                $newOrder = $management->order;
+                $oldOrder = $management->getOriginal('order');
 
                 if ($oldOrder) {
                     if ($newOrder < $oldOrder) {
@@ -41,6 +41,6 @@ class Staff extends Model
 
     public function category(): BelongsTo
     {
-        return $this->belongsTo(CategoryStaff::class, 'category_staff_id');
+        return $this->belongsTo(CategoryManagement::class, 'category_management_id');
     }
 }

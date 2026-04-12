@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\Resources\Staff\Tables;
+namespace App\Filament\Resources\CategoryManagement\Tables;
 
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
@@ -8,15 +8,13 @@ use Filament\Actions\EditAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
-class StaffTable
+class CategoryManagementTable
 {
     public static function configure(Table $table): Table
     {
         return $table
             ->columns([
-                TextColumn::make('order')->label('Позиция')->sortable(),
-                TextColumn::make('name')->label('ФИО сотрудника')->searchable()->sortable(),
-                TextColumn::make('position')->label('Должность')->searchable()->sortable(),
+                TextColumn::make('title')->label('Название'),
             ])
             ->filters([
                 //

@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Filament\Resources\Staff\Schemas;
+namespace App\Filament\Resources\Management\Schemas;
 
-use App\Models\CategoryStaff;
+use App\Models\CategoryManagement;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
@@ -14,7 +14,7 @@ use Filament\Schemas\Components\Group;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
 
-class StaffForm
+class ManagementForm
 {
     public static function configure(Schema $schema): Schema
     {
@@ -22,10 +22,10 @@ class StaffForm
             Grid::make()->schema([
                 Group::make()->schema([
                     Section::make('Основная информация')->schema([
-                        Select::make('category_staff_id')
+                        Select::make('category_management_id')
                             ->label('Категория')
                             ->options(function () {
-                                return CategoryStaff::pluck('title', 'id');
+                                return CategoryManagement::pluck('title', 'id');
                             })
                             ->required(),
                         TextInput::make('name')
@@ -62,7 +62,7 @@ class StaffForm
                             ->image()
                             ->label('Фото сотрудника')
                             ->disk('public')
-                            ->directory('staff')
+                            ->directory('management')
                     ])->columnSpanFull()
                 ])->columnSpan(2)
             ])->columns(6)->columnSpanFull()

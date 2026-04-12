@@ -2,9 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::namespace('Home')->as('home::')->group(function () {
-    Route::get('/', [\App\Http\Controllers\Home\HomeController::class, 'index'])->name('index');
-});
+Route::
+        namespace('Home')->as('home::')->group(function () {
+            Route::get('/', [\App\Http\Controllers\Home\HomeController::class, 'index'])->name('index');
+        });
 
 Route::prefix('common')->group(function () {
     Route::namespace('Common')->as('common::')->group(function () {
@@ -14,7 +15,7 @@ Route::prefix('common')->group(function () {
 
 Route::prefix('info')->group(function () {
     Route::namespace('Info')->as('info::')->group(function () {
-       Route::get('/basics', [\App\Http\Controllers\Info\InfoController::class, 'basics'])->name('basics');
+        Route::get('/basics', [\App\Http\Controllers\Info\InfoController::class, 'basics'])->name('basics');
         Route::get('/structure', [\App\Http\Controllers\Info\InfoController::class, 'structure'])->name('structure');
         Route::get('/education', [\App\Http\Controllers\Info\InfoController::class, 'education'])->name('education');
         Route::get('/mt-resources', [\App\Http\Controllers\Info\InfoController::class, 'mtResources'])->name('mtResources');
@@ -42,7 +43,7 @@ Route::prefix('college')->group(function () {
         Route::get('/vacancies', [\App\Http\Controllers\College\CollegeController::class, 'vacancies'])->name('vacancies');
         Route::get('/virtual-tour', [\App\Http\Controllers\College\CollegeController::class, 'virtualTour'])->name('virtualTour');
         Route::get('/specialties', [\App\Http\Controllers\Specials\SpecialsController::class, 'index'])->name('specials'); // уже есть Specials
-        Route::get('/management', [\App\Http\Controllers\Staff\StaffController::class, 'index'])->name('management'); // Руководство и педагогический состав
+        Route::get('/teaching-staff', [\App\Http\Controllers\Staff\StaffController::class, 'index'])->name('teachingStaff'); // Педагогический состав
         Route::get('/news', [\App\Http\Controllers\News\NewsController::class, 'index'])->name('news'); // Новости
         Route::get('/contacts', [\App\Http\Controllers\Contact\ContactController::class, 'index'])->name('contacts'); // Контакты
     });
@@ -52,6 +53,9 @@ Route::prefix('college')->group(function () {
     });
     Route::namespace('Staff')->as('staff::')->group(function () {
         Route::get('/employees', [\App\Http\Controllers\Staff\StaffController::class, 'index'])->name('index');
+    });
+    Route::namespace('Management')->as('management::')->group(function () {
+        Route::get('/management', [\App\Http\Controllers\Management\ManagementController::class, 'index'])->name('index');
     });
     Route::namespace('Events')->as('events::')->group(function () {
         Route::get('/events/{id}/show', [\App\Http\Controllers\Events\EventsController::class, 'show'])->name('show');

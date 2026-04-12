@@ -9,12 +9,14 @@ class StaffController extends Controller
 {
     public function index()
     {
-        $categories = CategoryStaff::with(['staff' => function ($query) {
-            $query->orderBy('created_at', 'desc');
-        }])->get();
+        $categories = CategoryStaff::with([
+            'staff' => function ($query) {
+                $query->orderBy('order', 'asc');
+            }
+        ])->get();
 
         return view('staff::index', [
-            'title' => 'Сотрудники',
+            'title' => 'Руководство',
             'categories' => $categories,
         ]);
     }

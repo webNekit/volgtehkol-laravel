@@ -20,7 +20,7 @@ class StaffResource extends Resource
     protected static ?string $model = Staff::class;
     protected static \UnitEnum|string|null $navigationGroup = NavigationGroup::EducationInfo->value;
     protected static ?string $modelLabel = 'Сотрудник';
-    protected static ?string $pluralModelLabel = 'Сотрудники';
+    protected static ?string $pluralModelLabel = 'Руководство';
     protected static ?string $recordTitleAttribute = 'name';
 
     public static function form(Schema $schema): Schema

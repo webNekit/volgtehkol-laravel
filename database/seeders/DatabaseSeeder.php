@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
             SpecialCategorySeeder::class,
             SpecialSeeder::class,
             StaffSeeder::class,
+            ManagementSeeder::class,
             ContactsSeeder::class,
         ]);
     }
