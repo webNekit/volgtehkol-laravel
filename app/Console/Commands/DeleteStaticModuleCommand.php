@@ -2,9 +2,8 @@
 
 namespace App\Console\Commands;
 
+use App\Services\DeleteStaticModuleService;
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 
 class DeleteStaticModuleCommand extends Command
@@ -13,7 +12,7 @@ class DeleteStaticModuleCommand extends Command
 
     protected $description = 'Deletes a static module: Filament Resource, Controller, Views, Routes, Menu, Sidebar';
 
-    public function handle()
+    public function handle(DeleteStaticModuleService $service)
     {
         $this->info('Static Module Deletion Wizard');
         $this->warn('WARNING: This will permanently delete files and configuration entries!');
@@ -56,213 +55,22 @@ class DeleteStaticModuleCommand extends Command
 
         $this->newLine();
 
-        $this->deleteFilamentResource($baseName);
-        $this->deleteController($baseName);
-        $this->deleteViews($prefix);
+        try {
+            $result = $service->deleteModule($baseName, $prefix, $deleteDbRecords);
 
-        $this->cleanRoutes($prefix);
-        $this->cleanMenu($prefix);
-        $this->cleanSidebar($prefix);
-        $this->cleanAppServiceProvider($prefix);
+            $this->newLine();
+            $this->info("✅ Module '{$baseName}' (prefix: {$prefix}) has been successfully deleted!");
 
-        if ($deleteDbRecords) {
-            $this->deleteDbRecords($prefix);
+            if (!empty($result['details'])) {
+                foreach ($result['details'] as $detail) {
+                    $this->line("  ✓ {$detail}");
+                }
+            }
+        } catch (\Exception $e) {
+            $this->error($e->getMessage());
+            return 1;
         }
-
-        $this->newLine();
-        $this->info("✅ Module '{$baseName}' (prefix: {$prefix}) has been successfully deleted!");
 
         return 0;
-    }
-
-    protected function deleteFilamentResource($baseName)
-    {
-        $dir = app_path("Filament/Resources/{$baseName}ModulePages");
-
-        if (File::exists($dir)) {
-            File::deleteDirectory($dir);
-            $this->line("  ✓ Deleted Filament resource: app/Filament/Resources/{$baseName}ModulePages/");
-        } else {
-            $this->warn("  ⚠ Filament resource directory not found: {$dir}");
-        }
-    }
-
-    protected function deleteController($baseName)
-    {
-        $dir = app_path("Http/Controllers/{$baseName}");
-
-        if (File::exists($dir)) {
-            File::deleteDirectory($dir);
-            $this->line("  ✓ Deleted controller: app/Http/Controllers/{$baseName}/");
-        } else {
-            $this->warn("  ⚠ Controller directory not found: {$dir}");
-        }
-    }
-
-    protected function deleteViews($prefix)
-    {
-        $dir = resource_path("views/web/{$prefix}");
-
-        if (File::exists($dir)) {
-            File::deleteDirectory($dir);
-            $this->line("  ✓ Deleted views: resources/views/web/{$prefix}/");
-        } else {
-            $this->warn("  ⚠ Views directory not found: {$dir}");
-        }
-    }
-
-    protected function cleanRoutes($prefix)
-    {
-        $path = base_path('routes/web.php');
-        if (!File::exists($path)) return;
-
-        $content = File::get($path);
-
-        // Try marker-based removal first
-        $start = "// [MODULE:{$prefix}:START]";
-        $end   = "// [MODULE:{$prefix}:END]";
-
-        $startPos = strpos($content, $start);
-        $endPos   = strpos($content, $end);
-
-        if ($startPos !== false && $endPos !== false) {
-            $removeFrom = $startPos > 0 ? $startPos - 1 : $startPos;
-            $removeTo   = $endPos + strlen($end);
-            if (isset($content[$removeTo]) && $content[$removeTo] === "\n") {
-                $removeTo++;
-            }
-            $newContent = substr($content, 0, $removeFrom) . substr($content, $removeTo);
-            File::put($path, $newContent);
-            $this->line("  ✓ Removed route block from routes/web.php");
-            return;
-        }
-
-        // Fallback: regex for legacy (pre-marker) modules
-        $escapedPrefix = preg_quote($prefix, '/');
-        $pattern = '/\n*Route::prefix\(\'' . $escapedPrefix . '\'\)->group\(function \(\) \{\n.*?\n\}\);\n?/s';
-        $new = preg_replace($pattern, "\n", $content);
-
-        if ($new !== $content) {
-            File::put($path, $new);
-            $this->line("  ✓ Removed route block from routes/web.php (legacy format)");
-        } else {
-            $this->warn("  ⚠ Could not find route block for prefix '{$prefix}' in routes/web.php");
-        }
-    }
-
-    protected function cleanMenu($prefix)
-    {
-        $path = base_path('config/menu.php');
-        if (!File::exists($path)) return;
-
-        $content = File::get($path);
-
-        // Try marker-based removal first
-        $start = "    // [MENU:{$prefix}:START]";
-        $end   = "    // [MENU:{$prefix}:END]";
-
-        $startPos = strpos($content, $start);
-        $endPos   = strpos($content, $end);
-
-        if ($startPos !== false && $endPos !== false) {
-            $removeFrom = $startPos > 0 ? $startPos - 1 : $startPos;
-            $removeTo   = $endPos + strlen($end);
-            if (isset($content[$removeTo]) && $content[$removeTo] === "\n") {
-                $removeTo++;
-            }
-            $newContent = substr($content, 0, $removeFrom) . substr($content, $removeTo);
-            File::put($path, $newContent);
-            $this->line("  ✓ Removed entry from config/menu.php");
-            return;
-        }
-
-        // Fallback: find the array block by prefix and remove it line-by-line
-        $lines = explode("\n", $content);
-        $newLines = [];
-        $inBlock = false;
-        $bracketDepth = 0;
-        $removed = false;
-
-        foreach ($lines as $line) {
-            if (!$inBlock && preg_match("/\'prefix\'\s*=>\s*\'" . preg_quote($prefix, '/') . "\'/", $line)) {
-                // Found the prefix line — walk back to find the opening bracket
-                // Remove the last line added (which should be the '[' opening)
-                array_pop($newLines);
-                $inBlock = true;
-                $bracketDepth = 1; // we already consumed the opening [
-                $removed = true;
-                continue;
-            }
-
-            if ($inBlock) {
-                $bracketDepth += substr_count($line, '[') - substr_count($line, ']');
-                if ($bracketDepth <= 0) {
-                    $inBlock = false;
-                }
-                continue;
-            }
-
-            $newLines[] = $line;
-        }
-
-        if ($removed) {
-            File::put($path, implode("\n", $newLines));
-            $this->line("  ✓ Removed entry from config/menu.php (legacy format)");
-        } else {
-            $this->warn("  ⚠ Could not find menu entry for prefix '{$prefix}' in config/menu.php");
-        }
-    }
-
-    protected function cleanSidebar($prefix)
-    {
-        $path = app_path('Support/Sidebar.php');
-        if (!File::exists($path)) return;
-
-        $content = File::get($path);
-
-        // Remove all lines like: 'prefix::anything',
-        $pattern = '/\s*\'' . preg_quote($prefix, '/') . '::[^\']+\',\n?/';
-
-        $new = preg_replace($pattern, '', $content);
-
-        if ($new !== $content) {
-            File::put($path, $new);
-            $this->line("  ✓ Removed routes from app/Support/Sidebar.php");
-        } else {
-            $this->warn("  ⚠ No sidebar routes found for prefix '{$prefix}'");
-        }
-    }
-
-    protected function cleanAppServiceProvider($prefix)
-    {
-        $path = app_path('Providers/AppServiceProvider.php');
-        if (!File::exists($path)) return;
-
-        $content = File::get($path);
-
-        // Remove line: $this->loadViewsFrom(..., 'prefix');
-        $pattern = '/\s*\$this->loadViewsFrom\(base_path\(\'resources\/views\/web\/' . preg_quote($prefix, '/') . '\'\),\s*\'' . preg_quote($prefix, '/') . '\'\);\n?/';
-
-        $new = preg_replace($pattern, "\n", $content);
-
-        if ($new !== $content) {
-            File::put($path, $new);
-            $this->line("  ✓ Removed loadViewsFrom from AppServiceProvider");
-        } else {
-            $this->warn("  ⚠ No loadViewsFrom found for prefix '{$prefix}' in AppServiceProvider");
-        }
-    }
-
-    protected function deleteDbRecords($prefix)
-    {
-        $count = DB::table('module_pages')->where('module', $prefix)->count();
-
-        if ($count === 0) {
-            $this->line("  ℹ No database records found for module '{$prefix}'");
-            return;
-        }
-
-        DB::table('module_pages')->where('module', $prefix)->delete();
-        $this->line("  ✓ Deleted {$count} database record(s) from module_pages for module '{$prefix}'");
     }
 }

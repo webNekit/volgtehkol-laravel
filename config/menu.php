@@ -84,5 +84,4 @@ return [
             ['name' => 'Обучение лиц, пострадавших от последствий распространения коронавирусной инфекции', 'route' => 'additional_education::covidTraining'],
             ['name' => 'Объявления', 'route' => 'additional_education::announcements'],
         ],
-    ],
-];
+    ]];
