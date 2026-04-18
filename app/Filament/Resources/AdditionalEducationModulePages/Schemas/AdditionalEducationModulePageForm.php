@@ -36,6 +36,7 @@ class AdditionalEducationModulePageForm
                                     ['blockquote', 'codeBlock', 'bulletList', 'orderedList'],
                                     ['table', 'attachFiles'],
                                     ['undo', 'redo'],
+                                    ['fullscreen'],
                                 ])
                                 ->columnSpanFull(),
                         ])->columnSpanFull(),

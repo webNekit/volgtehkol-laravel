@@ -28,7 +28,7 @@ class EventForm
                         Section::make('Основная информация')->schema([
                             TextInput::make('title')
                                 ->live(onBlur: true)
-                                ->afterStateUpdated(fn (Set $set, ?string $state) => $set('slug', Str::slug($state)))
+                                ->afterStateUpdated(fn(Set $set, ?string $state) => $set('slug', Str::slug($state)))
                                 ->label('Название мероприятия')
                                 ->required(),
                             TextInput::make('slug')
@@ -40,6 +40,14 @@ class EventForm
                                 ->label("Описание")
                                 ->columnSpanFull(),
                             RichEditor::make('content')
+                                ->toolbarButtons([
+                                    ['bold', 'italic', 'underline', 'strike', 'subscript', 'superscript', 'link'],
+                                    ['h2', 'h3', 'alignStart', 'alignCenter', 'alignEnd'],
+                                    ['blockquote', 'codeBlock', 'bulletList', 'orderedList'],
+                                    ['table', 'attachFiles'],
+                                    ['undo', 'redo'],
+                                    ['fullscreen'],
+                                ])
                                 ->label('Контент')
                                 ->columnSpanFull(),
                         ])->columns(2)->columnSpanFull(),

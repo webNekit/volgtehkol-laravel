@@ -26,7 +26,7 @@ class ArticleForm
                     Section::make('Основная информация')->schema([
                         TextInput::make('title')
                             ->live(onBlur: true)
-                            ->afterStateUpdated(fn (Set $set, ?string $state) => $set('slug', Str::slug($state)))
+                            ->afterStateUpdated(fn(Set $set, ?string $state) => $set('slug', Str::slug($state)))
                             ->label('Название новости')
                             ->required(),
                         TextInput::make('slug')
@@ -37,6 +37,14 @@ class ArticleForm
                             ->columnSpan(2),
                         RichEditor::make('content')
                             ->label("Контент")
+                            ->toolbarButtons([
+                                ['bold', 'italic', 'underline', 'strike', 'subscript', 'superscript', 'link'],
+                                ['h2', 'h3', 'alignStart', 'alignCenter', 'alignEnd'],
+                                ['blockquote', 'codeBlock', 'bulletList', 'orderedList'],
+                                ['table', 'attachFiles'],
+                                ['undo', 'redo'],
+                                ['fullscreen'],
+                            ])
                             ->columnSpan(2),
                     ])->columns(2)->columnSpanFull(),
                     Section::make("Медиа")->schema([
