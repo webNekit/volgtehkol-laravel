@@ -24,6 +24,7 @@ class ImageAttachmentsRelationManager extends RelationManager
         return $schema->components([
             Forms\Components\FileUpload::make('file_path')
                 ->label('Файл изображения')
+                ->disk('public')
                 ->directory('attachments/images') // Папка сохранения
                 ->image()
                 ->preserveFilenames()

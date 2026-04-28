@@ -38,7 +38,7 @@ class StaffForm
                             ->placeholder('000-000-00-00')
                             ->mask('999-999-99-99')
                             ->label('Телефон')
-                            ->prefix('+7')
+                            ->prefix('8')
                             ->tel(),
                         TextInput::make('email')
                             ->label('E-mail')
