@@ -19,7 +19,11 @@
                                              alt="{{ $item->name }}"
                                              class="employee-card__photo">
                                         <div class="employee-card__information">
-                                            <h3 class="employee-card__name text-md">{{ $item->name }}</h3>
+                                            <h3 class="employee-card__name text-md">
+                                                <a href="{{ route('staff::show', $item->id) }}" class="employee-card__link">
+                                                    {{ $item->name }}
+                                                </a>
+                                            </h3>
                                             <div class="employee-card__position">{{ $item->position }}</div>
                                             <ul class="employee-card__contacts">
                                                 @if($item->phone)
@@ -42,7 +46,7 @@
                                                             дисциплины
                                                         </div>
                                                         <div class="employee-card__contacts-value">
-                                                            {{ implode(', ', (array) json_decode($item->disciplines, true)) }}
+                                                            {{ implode(', ', (array) $item->disciplines) }}
                                                         </div>
                                                     </li>
                                                 @endif

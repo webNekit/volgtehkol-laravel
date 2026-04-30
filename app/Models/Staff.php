@@ -11,6 +11,10 @@ class Staff extends Model
     protected $casts = [
         'created_at' => 'datetime',
         'disciplines' => 'array',
+        'education' => 'array',
+        'work_experience' => 'array',
+        'professional_development' => 'array',
+        'honors' => 'array',
     ];
 
     protected static function booted()

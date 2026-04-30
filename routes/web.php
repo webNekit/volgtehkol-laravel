@@ -53,6 +53,7 @@ Route::prefix('college')->group(function () {
     });
     Route::namespace('Staff')->as('staff::')->group(function () {
         Route::get('/employees', [\App\Http\Controllers\Staff\StaffController::class, 'index'])->name('index');
+        Route::get('/employees/{id}', [\App\Http\Controllers\Staff\StaffController::class, 'show'])->name('show');
     });
     Route::namespace('Management')->as('management::')->group(function () {
         Route::get('/management', [\App\Http\Controllers\Management\ManagementController::class, 'index'])->name('index');

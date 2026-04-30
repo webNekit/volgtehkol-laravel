@@ -47,7 +47,7 @@ class ManagementForm
                             ->label('Дисциплины')
                             ->placeholder('Добавьте дисциплину'),
                         TextInput::make('general_works')
-                            ->label('Общие стаж работы'),
+                            ->label('Общий стаж работы'),
                         TextInput::make('current_works')
                             ->label('Текущие стаж работы'),
                         TextInput::make('order')

@@ -42,7 +42,7 @@
                                                             дисциплины
                                                         </div>
                                                         <div class="management-card__contacts-value">
-                                                            {{ implode(', ', (array) json_decode($item->disciplines, true)) }}
+                                                            {{ implode(', ', (array) $item->disciplines) }}
                                                         </div>
                                                     </li>
                                                 @endif
