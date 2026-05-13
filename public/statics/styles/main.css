@@ -949,6 +949,10 @@ button {
     .workshops {
         display: none;
     }
+    .welcome-section__container--flex {
+      display: grid;
+      row-gap: 52px;
+    }
 }
 
 .workshops__slider-wrapper {
