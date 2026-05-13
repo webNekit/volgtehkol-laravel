@@ -9,7 +9,7 @@
                     <h2 class="welcome-section__title" style="text-transform: uppercase;">Волгоградский<br>технический колледж</h2>
                 </div>
                 <br>
-                <h2 class="welcome-section__subtitle" style="text-transform: uppercase;">Учебно-производственный<br>технопарк колледжа</h2>
+                <h2 class="welcome-section__subtitle" style="text-transform: uppercase;">Учебно-производственный<br>технопарк</h2>
                 </div>
                 <div class="welcome-section__icons">
                     <img src="{{ asset('statics/img/mas-logo.png') }}" alt="" class="welcome-section__icon">
