@@ -909,8 +909,9 @@ button {
 }
 
 .welcome-section__container--flex {
-    display: grid;
-    row-gap: 24px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
 }
 
 .welcome-section__icons {
@@ -920,16 +921,23 @@ button {
 }
 
 .welcome-section__icon {
-    width: 80px;
-    height: 80px;
+    width: 100px;
+    height: 100px;
+}
+
+
+.welcome-section .welcome-section__title {
+  font-size: 42px;
+}
+
+.welcome-section__alt {
+  display: flex;
+  align-items: center;
+  column-gap: 24px;
 }
 
 .welcome-section .welcome-section__subtitle {
-
-}
-
-.welcome-section .welcome-section__title {
-    font-size: 34px;
+    font-size: 32px;
 }
 
 .workshops {

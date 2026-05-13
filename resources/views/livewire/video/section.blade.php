@@ -2,9 +2,18 @@
     <div class="welcome-section__wrapper">
         <div class="welcome-section__row welcome-section__row--top">
             <div class="welcome-section__container welcome-section__container--flex container">
-                <h2 class="welcome-section__title" style="text-transform: uppercase;">Учебно-производственный<br>технопарк колледжа</h2>
+                <div class="">
+                <div class="welcome-section__alt">
+                <img src="{{ asset('statics/img/logo.png') }}" alt="Логотип ГБПОУ Волгоградский технический колледж"
+                class="logo__img">
+                    <h2 class="welcome-section__title" style="text-transform: uppercase;">Волгоградский<br>технический колледж</h2>
+                </div>
+                <br>
+                <h2 class="welcome-section__subtitle" style="text-transform: uppercase;">Учебно-производственный<br>технопарк колледжа</h2>
+                </div>
                 <div class="welcome-section__icons">
-                    <img src="{{ asset('statics/img/nac-logo.png') }}" alt="" class="welcome-section__icon">
+                    <img src="{{ asset('statics/img/mas-logo.png') }}" alt="" class="welcome-section__icon">
+                    <img src="{{ asset('statics/img/prof-logo.png') }}" alt="" class="welcome-section__icon">
                     <img src="{{ asset('statics/img/bas-logo.png') }}" alt="" class="welcome-section__icon">
                 </div>
             </div>
