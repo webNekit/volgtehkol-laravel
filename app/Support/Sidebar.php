@@ -6,7 +6,9 @@ use Illuminate\Support\Facades\Route;
 
 class Sidebar
 {
-    protected static array $routes = [     'news::index',
+    protected static array $routes = [          'college::ed',
+        'college::education',
+   'news::index',
         'docs::index',
         'staff::index',
         'management::index',

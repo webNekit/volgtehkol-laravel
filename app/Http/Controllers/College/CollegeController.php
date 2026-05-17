@@ -65,4 +65,16 @@ class CollegeController extends Controller
     {
         return $this->renderPage('virtualTour');
     }
+
+    public function education()
+    {
+        return $this->renderPage('education');
+    }
+
+
+    public function ed()
+    {
+        return $this->renderPage('ed');
+    }
+
 }

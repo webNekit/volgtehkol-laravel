@@ -21,7 +21,8 @@ class CollegeModulePageForm
             'charter' => 'Устав',
             'vacancies' => 'Вакансии',
             'virtualTour' => 'Виртуальный тур',
-        ];
+                    'ed' => 'Обр',
+];
 
         return $schema
             ->components([

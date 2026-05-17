@@ -27,6 +27,176 @@ class StaticModuleService
         ];
     }
 
+    public function addPageToModule(string $baseName, string $prefix, string $pageKey, string $pageTitle): array
+    {
+        $this->updateController($baseName, $prefix, $pageKey);
+        $this->updateRoutesForPage($baseName, $prefix, $pageKey);
+        $this->updateMenuForPage($prefix, $pageKey, $pageTitle);
+        $this->updateSidebarForPage($prefix, $pageKey);
+        $this->generateViewForPage($prefix, $pageKey, $pageTitle);
+        $this->updateFilamentForm($baseName, $pageKey, $pageTitle);
+
+        return [
+            'success' => true,
+            'message' => "Successfully added page '{$pageTitle}' to module '{$prefix}'!",
+        ];
+    }
+
+    protected function updateFilamentForm($baseName, $pageKey, $pageTitle)
+    {
+        $path = app_path("Filament/Resources/{$baseName}ModulePages/Schemas/{$baseName}ModulePageForm.php");
+        if (!File::exists($path)) {
+            return; // Fail silently if resource form doesn't exist
+        }
+
+        $content = File::get($path);
+        $newOption = "            '{$pageKey}' => '{$pageTitle}',\n";
+        
+        // Find the $pageOptions array
+        $search = '$pageOptions = [';
+        $pos = strpos($content, $search);
+        if ($pos !== false) {
+            $endPos = strpos($content, '];', $pos);
+            $newContent = substr_replace($content, $newOption, $endPos, 0);
+            File::put($path, $newContent);
+        }
+    }
+
+    protected function updateController($baseName, $prefix, $pageKey)
+    {
+        $path = app_path("Http/Controllers/{$baseName}/{$baseName}Controller.php");
+        if (!File::exists($path)) {
+            throw new \Exception("Файл контроллера не найден по пути: {$path}. Убедитесь, что название папки модуля указано верно.");
+        }
+        $content = File::get($path);
+
+        $newMethod = <<<PHP
+
+    public function {$pageKey}()
+    {
+        return \$this->renderPage('{$pageKey}');
+    }
+
+}
+PHP;
+
+        // Find the last closing brace
+        $pos = strrpos($content, '}');
+        if ($pos !== false) {
+            $newContent = substr_replace($content, $newMethod, $pos, 1);
+            File::put($path, $newContent);
+        }
+    }
+
+    protected function updateRoutesForPage($baseName, $prefix, $pageKey)
+    {
+        $path = base_path('routes/web.php');
+        $content = File::get($path);
+
+        $route = "        Route::get('/" . Str::kebab($pageKey) . "', [\\App\\Http\\Controllers\\{$baseName}\\{$baseName}Controller::class, '{$pageKey}'])->name('{$pageKey}');\n";
+
+        $search = "// [MODULE:{$prefix}:START]";
+        $pos = strpos($content, $search);
+        if ($pos !== false) {
+            $endOfGroup = strpos($content, "    });", $pos);
+            $newContent = substr_replace($content, $route, $endOfGroup, 0);
+            File::put($path, $newContent);
+        }
+    }
+
+    protected function updateMenuForPage($prefix, $pageKey, $pageTitle)
+    {
+        $path = base_path('config/menu.php');
+        $content = File::get($path);
+
+        $item = "            ['name' => '{$pageTitle}', 'route' => '{$prefix}::{$pageKey}'],\n";
+
+        $search = "// [MENU:{$prefix}:START]";
+        $pos = strpos($content, $search);
+        if ($pos !== false) {
+            $endOfItems = strpos($content, "        ],", $pos);
+            $newContent = substr_replace($content, $item, $endOfItems, 0);
+            File::put($path, $newContent);
+        }
+    }
+
+    protected function updateSidebarForPage($prefix, $pageKey)
+    {
+        $path = app_path('Support/Sidebar.php');
+        $content = File::get($path);
+
+        $route = "        '{$prefix}::{$pageKey}',\n";
+
+        $pos = strpos($content, 'protected static array $routes = [');
+        if ($pos !== false) {
+            $newContent = substr_replace($content, $route, $pos + 36, 0);
+            File::put($path, $newContent);
+        }
+    }
+
+    public function deletePageFromModule(string $baseName, string $prefix, string $pageKey): array
+    {
+        $this->removeControllerMethod($baseName, $pageKey);
+        $this->removeRouteForPage($prefix, $pageKey);
+        $this->removeMenuEntryForPage($prefix, $pageKey);
+        $this->removeSidebarEntryForPage($prefix, $pageKey);
+        $this->deleteViewForPage($prefix, $pageKey);
+
+        return [
+            'success' => true,
+            'message' => "Successfully deleted page '{$pageKey}' from module '{$prefix}'!",
+        ];
+    }
+
+    protected function removeControllerMethod($baseName, $pageKey)
+    {
+        $path = app_path("Http/Controllers/{$baseName}/{$baseName}Controller.php");
+        $content = File::get($path);
+
+        $pattern = "/\n\n    public function {$pageKey}\(\)\n    \{\n        return \\\$this->renderPage\('{$pageKey}'\);\n    \}\n/";
+        $newContent = preg_replace($pattern, '', $content);
+        File::put($path, $newContent);
+    }
+
+    protected function removeRouteForPage($prefix, $pageKey)
+    {
+        $path = base_path('routes/web.php');
+        $content = File::get($path);
+
+        $routePattern = "/\s+Route::get\('\/" . Str::kebab($pageKey) . "',.*'{$pageKey}'\)->name\('{$pageKey}'\);/";
+        $newContent = preg_replace($routePattern, '', $content);
+        File::put($path, $newContent);
+    }
+
+    protected function removeMenuEntryForPage($prefix, $pageKey)
+    {
+        $path = base_path('config/menu.php');
+        $content = File::get($path);
+
+        $pattern = "/\s+\['name' => '.*', 'route' => '{$prefix}::{$pageKey}'\],\n/";
+        $newContent = preg_replace($pattern, '', $content);
+        File::put($path, $newContent);
+    }
+
+    protected function removeSidebarEntryForPage($prefix, $pageKey)
+    {
+        $path = app_path('Support/Sidebar.php');
+        $content = File::get($path);
+
+        $pattern = "/\s+'{$prefix}::{$pageKey}',\n/";
+        $newContent = preg_replace($pattern, '', $content);
+        File::put($path, $newContent);
+    }
+
+    protected function deleteViewForPage($prefix, $pageKey)
+    {
+        $path = resource_path("views/web/{$prefix}/" . Str::kebab($pageKey) . ".blade.php");
+        if (File::exists($path)) {
+            File::delete($path);
+        }
+    }
+
+
     protected function generateViews($prefix, $pages)
     {
         $dir = resource_path("views/web/{$prefix}");
