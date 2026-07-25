@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\SpecialCategories\Tables;
 
+use App\Enums\EducationLevel;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
@@ -17,6 +18,10 @@ class SpecialCategoriesTable
             ->columns([
                 TextColumn::make('id')->label('#')->searchable()->sortable(),
                 TextColumn::make('title')->label('Название')->searchable()->sortable(),
+                TextColumn::make('education_level')
+                    ->label('Уровень образования')
+                    ->formatStateUsing(fn(EducationLevel $state) => $state->label())
+                    ->sortable(),
                 IconColumn::make('is_active')->boolean()->label('Отображать на сайте'),
             ])
             ->filters([

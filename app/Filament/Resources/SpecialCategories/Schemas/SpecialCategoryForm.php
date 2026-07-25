@@ -2,6 +2,8 @@
 
 namespace App\Filament\Resources\SpecialCategories\Schemas;
 
+use App\Enums\EducationLevel;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Schemas\Components\Group;
@@ -18,6 +20,12 @@ class SpecialCategoryForm
                     Section::make('Основная информация')->schema([
                         TextInput::make('title')
                             ->label('Название')
+                            ->required(),
+                        Select::make('education_level')
+                            ->label('Уровень образования')
+                            ->helperText('Раздел на странице «Образование», в который попадёт направление')
+                            ->options(EducationLevel::options())
+                            ->default(EducationLevel::Spo->value)
                             ->required(),
                     ])->columnSpan(4),
                     Section::make()->schema([

@@ -2,7 +2,7 @@
 
 namespace App\Filament\Resources\Specials\Schemas;
 
-use App\Filament\Resources\SpecialCategories\SpecialCategoryResource;
+use App\Enums\EducationLevel;
 use App\Models\SpecialCategory;
 use Filament\Actions\Action;
 use Filament\Forms\Components\FileUpload;
@@ -55,6 +55,11 @@ class SpecialForm
                                 ->modalButton('Создать')
                                 ->form([
                                     TextInput::make('title')->label('Название')->required(),
+                                    Select::make('education_level')
+                                        ->label('Уровень образования')
+                                        ->options(EducationLevel::options())
+                                        ->default(EducationLevel::Spo->value)
+                                        ->required(),
                                     Toggle::make('is_active')->label('Отображать на сайте')->default(false),
                                 ])
                                 ->action(function ($data, $set) {

@@ -1768,6 +1768,17 @@ section:is(.section--specialties) {
 
 .section:is(.section--education) .education-collection {
   width: 100%;
+  display: grid;
+  row-gap: clamp(1.5rem, 1.1285714286rem + 1.5238095238vw, 2.5rem);
+}
+.section:is(.section--education) .education-collection__group {
+  width: 100%;
+  display: grid;
+  row-gap: clamp(0.75rem, 0.6571428571rem + 0.380952381vw, 1rem);
+}
+.section:is(.section--education) .education-collection__group-title {
+  font-weight: var(--font-semibold);
+  color: hsl(var(--muted-foreground));
 }
 .section:is(.section--education) .education-collection__list {
   margin: 0;

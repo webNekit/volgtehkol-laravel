@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Enums\EducationLevel;
 use App\Models\SpecialCategory;
 use Illuminate\Database\Seeder;
 
@@ -20,6 +21,7 @@ class SpecialCategorySeeder extends Seeder
         foreach ($categories as $title) {
             SpecialCategory::create([
                 'title' => $title,
+                'education_level' => EducationLevel::Spo,
                 'is_active' => true,
             ]);
         }

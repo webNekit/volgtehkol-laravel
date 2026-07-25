@@ -1,6 +1,17 @@
 .section:is(.section--education) {
   .education-collection {
     width: 100%;
+    display: grid;
+    row-gap: fluid(40,24);
+    &__group {
+      width: 100%;
+      display: grid;
+      row-gap: fluid(16,12);
+    }
+    &__group-title {
+      font-weight: var(--font-semibold);
+      color: hsl(var(--muted-foreground));
+    }
     &__list {
       margin: 0;
       padding: 0;
