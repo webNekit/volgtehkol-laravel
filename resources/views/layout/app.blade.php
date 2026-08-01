@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="{{ asset('statics/styles/libs/swiper-bundle.min.css') }}">
     <link rel="stylesheet" href="{{ asset('statics/styles/libs/bvi.min.css') }}">
     <link rel="stylesheet" href="{{ asset('statics/styles/normalize.css') }}">
-    <link rel="stylesheet" href="{{ asset('statics/styles/main.css') }}">
+    <link rel="stylesheet" href="{{ asset('statics/styles/main.css') }}?v=1.4">
     @livewireStyles
 </head>
 <body class="__application" id="app">
