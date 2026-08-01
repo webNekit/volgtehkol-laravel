@@ -10,10 +10,11 @@
     margin: 0;
     padding: 0;
     list-style: none;
-    display: flex;
-    gap: var(--gap);
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(rem(180), 1fr));
+    gap: rem(20) var(--gap);
     @include mobile-s {
-      flex-direction: column;
+      grid-template-columns: 1fr;
       gap: rem(14);
     }
   }

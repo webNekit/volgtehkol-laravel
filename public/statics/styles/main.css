@@ -2021,7 +2021,7 @@ section:is(.section--specialties) {
 .footer__container {
   display: grid;
   grid-gap: clamp(1rem, 0.6285714286rem + 1.5238095238vw, 2rem);
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 .footer__information {
   grid-column: 1 span;
@@ -2096,12 +2096,13 @@ section:is(.section--specialties) {
   margin: 0;
   padding: 0;
   list-style: none;
-  display: flex;
-  gap: var(--gap);
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(11.25rem, 1fr));
+  gap: 1.25rem var(--gap);
 }
 @media screen and (max-width: 520.98px) {
   .footer-contacts__list {
-    flex-direction: column;
+    grid-template-columns: 1fr;
     gap: 0.875rem;
   }
 }
